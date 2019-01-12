@@ -23,11 +23,16 @@ Route::get('portofolio', function () {
 Route::get('services', function () {
     return view('public.services');
 });
-Route::get('admin', function () {
+
+
+
+Route::group(['middleware'=> 'admin'], function(){
+	Route::get('admin', function () {
     return view('admin.index');
-});
-Route::get('logins', function () {
-    return view('layouts.login');
+	});
+	
+	Route::resource('admin/user', 'UsersController');
+	
 });
 
 

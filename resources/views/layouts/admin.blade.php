@@ -35,10 +35,10 @@ License: You must have a valid license purchased only from themeforest(the above
 		<!--end::Web font -->
 
 		<!--begin::Global Theme Styles -->
-		<link href="assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('assets/vendors/base/vendors.bundle.css') }}" rel="stylesheet" type="text/css" />
 
 		<!--RTL version:<link href="assets/vendors/base/vendors.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
-		<link href="assets/demo/demo4/base/style.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('assets/demo/demo4/base/style.bundle.css') }}" rel="stylesheet" type="text/css" />
 
 		<!--RTL version:<link href="assets/demo/demo4/base/style.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
 
@@ -49,7 +49,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!-- end::Head -->
 
 	<!-- begin::Body -->
-	<body style="background-image: url(assets/app/media/img/bg/bg-1.jpg);" class="m-page--boxed m-body--fixed m-header--static m-aside-left--enabled m-aside-left--offcanvas m-aside--offcanvas-default">
+	<body style="background-image: url({{ asset('assets/app/media/img/bg/bg-1.jpg') }});" class="m-page--boxed m-body--fixed m-header--static m-aside-left--enabled m-aside-left--offcanvas m-aside--offcanvas-default">
 
 		<!-- begin:: Page -->
 		<div class="m-grid m-grid--hor m-grid--root m-page">
@@ -64,7 +64,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							<div class="m-stack m-stack--ver m-stack--general m-stack--inline">
 								<div class="m-stack__item m-stack__item--middle m-brand__logo">
 									<a href="index.html" class="m-brand__logo-wrapper">
-										<img height="50" alt="" src="assets/logo/logow.png" />
+										<img height="50" alt="" src="{{ asset('assets/logo/logow.png') }}" />
 									</a>
 
 								</div>
@@ -183,13 +183,13 @@ License: You must have a valid license purchased only from themeforest(the above
 		<!-- begin::Quick Nav -->
 
 		<!--begin::Global Theme Bundle -->
-		<script src="assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
-		<script src="assets/demo/demo4/base/scripts.bundle.js" type="text/javascript"></script>
+		<script src="{{ asset('assets/vendors/base/vendors.bundle.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('assets/demo/demo4/base/scripts.bundle.js') }}" type="text/javascript"></script>
 
 		<!--end::Global Theme Bundle -->
 
 		<!--begin::Page Scripts -->
-		<script src="assets/app/js/dashboard.js" type="text/javascript"></script>
+		<script src="{{ asset('assets/app/js/dashboard.js') }}" type="text/javascript"></script>
 
 		<!--end::Page Scripts -->
 	</body>
