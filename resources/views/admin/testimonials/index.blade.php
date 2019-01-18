@@ -7,13 +7,13 @@
 <div class="m-subheader ">
 	<div class="d-flex align-items-center">
 		<div class="mr-auto">
-			<h3 class="m-subheader__title m-subheader__title--separator">Posts</h3>
+			<h3 class="m-subheader__title m-subheader__title--separator">Testimonials</h3>
 			<ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
 				
 				<li class="m-nav__separator">-</li>
 				<li class="m-nav__item">
 					<a href="" class="m-nav__link">
-						<span class="m-nav__link-text">All Posts</span>
+						<span class="m-nav__link-text">All Testimonials</span>
 					</a>
 				</li>
 				
@@ -28,25 +28,14 @@
 @section('content')
 <div class="m-portlet m-portlet--mobile">
 							<div class="m-portlet__head">
+								
 								<div class="m-portlet__head-tools">
 									<ul class="m-portlet__nav">
 										<li class="m-portlet__nav-item">
-											<a href="{{ url('admin/categories') }}" class="btn btn-success m-btn m-btn--pill m-btn--custom m-btn--icon m-btn--air">
-												<span>
-													<span>Categories</span>
-												</span>
-											</a>
-										</li>
-										
-									</ul>
-								</div>
-								<div class="m-portlet__head-tools">
-									<ul class="m-portlet__nav">
-										<li class="m-portlet__nav-item">
-											<a href="{{ url('admin/posts/create') }}" class="btn btn-primary m-btn m-btn--pill m-btn--custom m-btn--icon m-btn--air">
+											<a href="{{ url('admin/testimonials/create') }}" class="btn btn-primary m-btn m-btn--pill m-btn--custom m-btn--icon m-btn--air">
 												<span>
 													<i class="la la-plus"></i>
-													<span>New Post</span>
+													<span>New Testimonial</span>
 												</span>
 											</a>
 										</li>
@@ -61,9 +50,9 @@
 									<thead>
 										<tr>
 											<th>ID</th>
-											<th>Author</th>
-											<th>Category</th>
-											<th>Title</th>
+											<th>Logo</th>
+											<th>Client</th>
+											<th>Name</th>
 											<th>Created at</th>
 											<th>Updated at</th>
 											<th>Actions</th>
@@ -71,16 +60,17 @@
 										</tr>
 									</thead>
 									<tbody>
-										@if($posts)
-										@foreach($posts as $post)
+										@if($testimoni)
+										@foreach($testimoni as $testi)
 										<tr>
-											<td>{{$post->id}}</td>
-											<td>{{$post->user->name}}</td>
-											<td>{{$post->category->name}}</td>
-											<td>{{$post->title}}</td>
-											<td>{{$post->created_at->diffForHumans()}}</td>
-        									<td>{{$post->updated_at->diffForHumans()}}</td>
-											<td><a href="{{route('admin.posts.edit', $post->id)}}"><i class="fa fa-edit"></i>Edit</a></td>
+											<td>{{$testi->id}}</td>
+											<td><img height="50" src="{{url($testi->photo->file)}}"></td>
+											<td>{{$testi->client}}</td>
+											<td>{{$testi->name}}</td>
+											<td>{{$testi->created_at->diffForHumans()}}</td>
+        									<td>{{$testi->updated_at->diffForHumans()}}</td>
+        									<td><a href="{{route('admin.testimonials.edit', $testi->id)}}"><i class="fa fa-edit"> Edit</i></a></td>
+											
 											
 										</tr>
 										@endforeach

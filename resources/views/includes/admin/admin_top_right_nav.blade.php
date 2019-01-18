@@ -4,7 +4,7 @@
 												<span class="m-topbar__welcome m--hidden-tablet m--hidden-mobile">Hello,&nbsp;</span>
 												<span class="m-topbar__username m--hidden-tablet m--hidden-mobile m--padding-right-15"><span class="m-link">{{ Auth::user()->name }}</span></span>
 												<span class="m-topbar__userpic">
-													<img src="{{$profile->photo ? URL::asset($profile->photo->file) : 'http://placehold.it/400x400'}}" class="m--img-rounded m--marginless m--img-centered" alt="" />
+													<img src="{{ Auth::user()->photo ? URL::asset( Auth::user()->photo->file) : 'http://placehold.it/400x400'}}" class="m--img-rounded m--marginless m--img-centered" alt="" />
 												</span>
 											</a>
 											<div class="m-dropdown__wrapper">
@@ -13,7 +13,7 @@
 													<div class="m-dropdown__header m--align-center" style="background: url({{ asset('assets/app/media/img/misc/user_profile_bg.jpg') }}); background-size: cover;">
 														<div class="m-card-user m-card-user--skin-dark">
 															<div class="m-card-user__pic">
-																<img src="{{ asset('assets/app/media/img/users/user4.jpg') }}" class="m--img-rounded m--marginless" alt="" />
+																<img src="{{ Auth::user()->photo ? URL::asset( Auth::user()->photo->file) : 'http://placehold.it/400x400'}}" class="m--img-rounded m--marginless" alt="" />
 															</div>
 															<div class="m-card-user__details">
 																<span class="m-card-user__name m--font-weight-500">{{ Auth::user()->name }}</span>
@@ -28,7 +28,7 @@
 																	<span class="m-nav__section-text">Section</span>
 																</li>
 																<li class="m-nav__item">
-																	<a href="admin/user" class="m-nav__link">
+																	<a href="{{ url('admin/user') }}" class="m-nav__link">
 																		<i class="m-nav__link-icon flaticon-profile-1"></i>
 																		<span class="m-nav__link-title">
 																			<span class="m-nav__link-wrap">

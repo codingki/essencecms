@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use App\Photo;
-use Illuminate\Support\Facades\Auth;
-class UsersController extends Controller
+
+class CategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +12,8 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        $user =  Auth::user();
-       
-        $profile = User::findOrFail($user->id);
-        return view('admin.user.edit', compact('profile'));
+    {
+        //
     }
 
     /**
@@ -62,9 +57,6 @@ class UsersController extends Controller
     public function edit($id)
     {
         //
-        $user = User::findOrFail($id);
-        
-        return view('admin.user.edit', compact('user'));
     }
 
     /**
@@ -76,23 +68,7 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-        if (trim($request->password) == '') {
-          $input = $request->except('password');
-        }else{
-          $input = $request->all();
-          $input['password'] = bcrypt($request->password);
-        }
-        
-        if ($file = $request->file('photo_id')) {
-          $name = time().$file->getClientOriginalName();
-          $file->move('storage/', $name);
-          $photo = Photo::create(['file'=>$name]);
-          $input['photo_id'] = $photo->id;
-
-        }
-        $user->update($input);
-        return redirect('/admin/user');
+        //
     }
 
     /**

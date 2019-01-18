@@ -39,11 +39,12 @@ License: You must have a valid license purchased only from themeforest(the above
 
 		<!--RTL version:<link href="assets/vendors/base/vendors.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
 		<link href="{{ asset('assets/demo/demo4/base/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('assets/demo/demo4/base/style.css') }}" rel="stylesheet" type="text/css" />
 
 		<!--RTL version:<link href="assets/demo/demo4/base/style.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
-
+		@yield('styles')
 		<!--end::Global Theme Styles -->
-		<link rel="shortcut icon" href="assets/logo/favicon.png" />
+		<link rel="shortcut icon" href="{{ asset('assets/logo/favicon.png') }}" />
 	</head>
 
 	<!-- end::Head -->
@@ -130,7 +131,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 						</div>
 					</div>
-					<div class="m-grid__item m-grid__item--fluid m-grid m-grid--desktop m-grid--ver-desktop m-body__content">
+					<div class="m-grid__item m-grid__item--fluid m-grid m-grid--desktop m-grid--ver-desktop m-body__content bg-white">
 
 						
 						<div class="m-grid__item m-grid__item--fluid m-wrapper">
@@ -190,7 +191,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 		<!--begin::Page Scripts -->
 		<script src="{{ asset('assets/app/js/dashboard.js') }}" type="text/javascript"></script>
-
+		@yield('scripts')
 		<!--end::Page Scripts -->
 	</body>
 

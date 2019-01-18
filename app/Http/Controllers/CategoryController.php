@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use App\Photo;
-use Illuminate\Support\Facades\Auth;
-class UsersController extends Controller
+use App\Categories;
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +12,9 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        $user =  Auth::user();
-       
-        $profile = User::findOrFail($user->id);
-        return view('admin.user.edit', compact('profile'));
+    {
+        $categories = Categories::all();
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -40,6 +36,9 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         //
+        Categories::create($request->all());
+        return redirect('/admin/categories');
+
     }
 
     /**
@@ -62,9 +61,9 @@ class UsersController extends Controller
     public function edit($id)
     {
         //
-        $user = User::findOrFail($id);
-        
-        return view('admin.user.edit', compact('user'));
+        $categories = Categories::all();
+        $category = Categories::findOrFail($id);
+        return view('admin.categories.edit', compact('category','categories'));
     }
 
     /**
@@ -76,23 +75,9 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-        if (trim($request->password) == '') {
-          $input = $request->except('password');
-        }else{
-          $input = $request->all();
-          $input['password'] = bcrypt($request->password);
-        }
-        
-        if ($file = $request->file('photo_id')) {
-          $name = time().$file->getClientOriginalName();
-          $file->move('storage/', $name);
-          $photo = Photo::create(['file'=>$name]);
-          $input['photo_id'] = $photo->id;
-
-        }
-        $user->update($input);
-        return redirect('/admin/user');
+        $category = Categories::findOrFail($id);
+        $category->update($request->all());
+        return redirect('/admin/categories');
     }
 
     /**
@@ -103,6 +88,7 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Categories::findOrFail($id)->delete();
+        return redirect('/admin/categories');
     }
 }

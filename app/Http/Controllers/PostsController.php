@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\Post;
+use App\Categories;
 use App\Photo;
 use Illuminate\Support\Facades\Auth;
-class UsersController extends Controller
+
+class PostsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +16,11 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        $user =  Auth::user();
-       
-        $profile = User::findOrFail($user->id);
-        return view('admin.user.edit', compact('profile'));
+    {
+        //
+        $posts = Post::all();
+        return view('admin.posts.index', compact('posts'));
+        
     }
 
     /**
@@ -28,7 +30,8 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Categories::pluck('name', 'id')->all();
+        return view('admin.posts.create', compact('categories'));
     }
 
     /**
@@ -39,7 +42,16 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        $user = Auth::user();
+        if ($file = $request->file('photo_id')) {
+            $name = time().$file->getClientOriginalName();
+            $file->move('storage', $name);
+            $photo = Photo::create(['file' => $name]);
+            $input['photo_id'] = $photo->id;
+        }
+        $user->posts()->create($input);
+        return redirect('/admin/posts');
     }
 
     /**
@@ -61,10 +73,9 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
-        $user = User::findOrFail($id);
-        
-        return view('admin.user.edit', compact('user'));
+        $post = Post::findOrFail($id);
+        $categories = Categories::pluck('name', 'id')->all();
+        return view('admin.posts.edit', compact('post','categories'));
     }
 
     /**
@@ -75,24 +86,18 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        $user = User::findOrFail($id);
-        if (trim($request->password) == '') {
-          $input = $request->except('password');
-        }else{
-          $input = $request->all();
-          $input['password'] = bcrypt($request->password);
-        }
+    {   
+        
+        $input = $request->except('user_id');
         
         if ($file = $request->file('photo_id')) {
-          $name = time().$file->getClientOriginalName();
-          $file->move('storage/', $name);
-          $photo = Photo::create(['file'=>$name]);
-          $input['photo_id'] = $photo->id;
-
+            $name = time().$file->getClientOriginalName();
+            $file->move('images', $name);
+            $photo = Photo::create(['file' => $name]);
+            $input['photo_id'] = $photo->id;
         }
-        $user->update($input);
-        return redirect('/admin/user');
+        Auth::user()->posts()->whereId($id)->first()->update($input);
+        return redirect('/admin/posts');
     }
 
     /**
@@ -103,6 +108,10 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        unlink(public_path() ."/". $post->photo->file);
+        $post->delete();
+        Session::flash('deleted_post', 'The post has been deleted');
+        return redirect('/admin/posts');
     }
 }
