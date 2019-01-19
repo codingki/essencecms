@@ -36,10 +36,10 @@ License: You must have a valid license purchased only from themeforest(the above
 
 		<!--begin::Global Theme Styles -->
 		<link href="{{ asset('assets/vendors/base/vendors.bundle.css') }}" rel="stylesheet" type="text/css" />
-
+		
+		<link href="{{ asset('assets/demo/demo4/base/style.css') }}" rel="stylesheet" type="text/css" />
 		<!--RTL version:<link href="assets/vendors/base/vendors.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
 		<link href="{{ asset('assets/demo/demo4/base/style.bundle.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('assets/demo/demo4/base/style.css') }}" rel="stylesheet" type="text/css" />
 
 		<!--RTL version:<link href="assets/demo/demo4/base/style.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
 		@yield('styles')
@@ -131,6 +131,20 @@ License: You must have a valid license purchased only from themeforest(the above
 
 						</div>
 					</div>
+					@if(Session::has('success'))
+						@include('includes.success')
+					@endif
+					@if(Auth::user()->is_active !== 1)
+					<div class="alert alert-brand m-alert m-alert--icon m-alert--air m-alert--square m--margin-bottom-30 alert-danger alert-dismissible fade show" >
+						<div class="m-alert__icon">
+							<i class="flaticon-exclamation-1"></i>
+						</div>
+						<div class="m-alert__text">
+							Your Account is not yet activated. Please contact your Administrator to make your account activated.
+							
+						</div>
+					</div>
+					@endif
 					<div class="m-grid__item m-grid__item--fluid m-grid m-grid--desktop m-grid--ver-desktop m-body__content bg-white">
 
 						

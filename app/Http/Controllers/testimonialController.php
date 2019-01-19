@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Testimonial;
 use App\Photo;
+use Illuminate\Support\Facades\Session;
 
 class testimonialController extends Controller
 {
@@ -46,6 +47,7 @@ class testimonialController extends Controller
             $input['photo_id'] = $photo->id;
         }
         Testimonial::create($input);
+        Session::flash('success', 'Your Testimonial has been created');
         
         return redirect('/admin/testimonials');
     }
@@ -92,6 +94,7 @@ class testimonialController extends Controller
         }
         $testi = Testimonial::findOrFail($id);
         $testi->update($input);
+        Session::flash('success', 'Your Testimonial has been updated');
         return redirect('/admin/testimonials');
 
     }
@@ -105,6 +108,7 @@ class testimonialController extends Controller
     public function destroy($id)
     {
         Testimonial::findOrFail($id)->delete();
+        Session::flash('success', 'Your Testimonial has been deleted');
         return redirect('/admin/testimonials');
     }
 }

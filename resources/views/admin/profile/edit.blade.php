@@ -60,7 +60,7 @@
 											</div>
 											<div class="tab-content">
 												<div class="tab-pane active" id="m_user_profile_tab_1">
-													{!! Form::model($profile,['class'=>'m-form m-form--fit m-form--label-align-right', 'method'=> 'PATCH', 'action' => ['UsersController@update', $profile->id], 'files'=>true]) !!}
+													{!! Form::model($profile,['class'=>'m-form m-form--fit m-form--label-align-right', 'method'=> 'PATCH', 'action' => ['ProfileController@update', $profile->id], 'files'=>true]) !!}
 													<div class="form-group m-form__group row">
 														<div class="col-10 ml-auto">
 															<h3 class="m-form__section">Personal Details</h3>

@@ -51,7 +51,7 @@
 
 <div class="col-sm-6 box-form">
 	
-	{!! Form::model($category, ['method'=> 'PATCH', 'action' => ['CategoryController@update', $category->id]]) !!}
+	{!! Form::model($cat, ['method'=> 'PATCH', 'action' => ['CategoryController@update', $cat->id]]) !!}
 	
 	<div class="m-portlet__body">
 		<div class="form-group m-form__group ">

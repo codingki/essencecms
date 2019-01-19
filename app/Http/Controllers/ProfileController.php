@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Categories;
+use App\User;
+use App\Photo;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
-class CategoryController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +17,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Categories::all();
-        return view('admin.categories.index', compact('categories'));
+        $user =  Auth::user();
+       
+        $profile = User::findOrFail($user->id);
+        return view('admin.profile.edit', compact('profile'));
     }
 
     /**
@@ -38,10 +42,6 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
-        Categories::create($request->all());
-        Session::flash('success', 'Category has been created');
-        return redirect('/admin/categories');
-
     }
 
     /**
@@ -64,9 +64,6 @@ class CategoryController extends Controller
     public function edit($id)
     {
         //
-        $categories = Categories::all();
-        $cat = Categories::findOrFail($id);
-        return view('admin.categories.edit', compact('cat','categories'));
     }
 
     /**
@@ -78,10 +75,24 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category = Categories::findOrFail($id);
-        $category->update($request->all());
-        Session::flash('success', 'Category has been updated');
-        return redirect('/admin/categories');
+        $user = User::findOrFail($id);
+        if (trim($request->password) == '') {
+          $input = $request->except('password');
+        }else{
+          $input = $request->all();
+          $input['password'] = bcrypt($request->password);
+        }
+        
+        if ($file = $request->file('photo_id')) {
+          $name = time().$file->getClientOriginalName();
+          $file->move('storage/', $name);
+          $photo = Photo::create(['file'=>$name]);
+          $input['photo_id'] = $photo->id;
+
+        }
+        $user->update($input);
+        Session::flash('success', 'Your profile has been updated');
+        return redirect('/admin/profile');
     }
 
     /**
@@ -92,8 +103,6 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        Categories::findOrFail($id)->delete();
-        Session::flash('success', 'Category has been deleted');
-        return redirect('/admin/categories');
+        //
     }
 }

@@ -27,8 +27,20 @@
 																<li class="m-nav__section m--hide">
 																	<span class="m-nav__section-text">Section</span>
 																</li>
+																@if(Auth::user()->role_id == 1)
 																<li class="m-nav__item">
-																	<a href="{{ url('admin/user') }}" class="m-nav__link">
+																	<a href="{{ url('admin/users') }}" class="m-nav__link">
+																		<i class="m-nav__link-icon flaticon-users"></i>
+																		<span class="m-nav__link-title">
+																			<span class="m-nav__link-wrap">
+																				<span class="m-nav__link-text">All Users</span>
+																			</span>
+																		</span>
+																	</a>
+																</li>
+																@endif
+																<li class="m-nav__item">
+																	<a href="{{ url('admin/profile') }}" class="m-nav__link">
 																		<i class="m-nav__link-icon flaticon-profile-1"></i>
 																		<span class="m-nav__link-title">
 																			<span class="m-nav__link-wrap">

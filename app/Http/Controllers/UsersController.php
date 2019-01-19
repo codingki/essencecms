@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Photo;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+
 class UsersController extends Controller
 {
     /**
@@ -19,6 +21,13 @@ class UsersController extends Controller
        
         $profile = User::findOrFail($user->id);
         return view('admin.user.edit', compact('profile'));
+        // $users = User::all();
+        // return view('admin.users.index', compact('users'));
+    }
+
+    public function profile()
+    {   
+        
     }
 
     /**
@@ -92,7 +101,8 @@ class UsersController extends Controller
 
         }
         $user->update($input);
-        return redirect('/admin/user');
+        Session::flash('success', 'Your profile has been updated');
+        return redirect('/admin/profile');
     }
 
     /**

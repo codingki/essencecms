@@ -7,6 +7,7 @@ use App\Post;
 use App\Categories;
 use App\Photo;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class PostsController extends Controller
 {
@@ -51,6 +52,7 @@ class PostsController extends Controller
             $input['photo_id'] = $photo->id;
         }
         $user->posts()->create($input);
+        Session::flash('success', 'Your Post has been created');
         return redirect('/admin/posts');
     }
 
@@ -97,6 +99,7 @@ class PostsController extends Controller
             $input['photo_id'] = $photo->id;
         }
         Auth::user()->posts()->whereId($id)->first()->update($input);
+        Session::flash('success', 'Your Post has been updated');
         return redirect('/admin/posts');
     }
 
@@ -111,7 +114,7 @@ class PostsController extends Controller
         $post = Post::findOrFail($id);
         unlink(public_path() ."/". $post->photo->file);
         $post->delete();
-        Session::flash('deleted_post', 'The post has been deleted');
+        Session::flash('success', 'Your Post has been deleted');
         return redirect('/admin/posts');
     }
 }

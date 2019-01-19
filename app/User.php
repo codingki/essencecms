@@ -25,8 +25,16 @@ class User extends Authenticatable
      * @var array
      */
 
+    public function isActive(){
+        if ($this->is_active == 1) {
+            return true;
+        }else{
+            return false;    
+        }
+        
+    }
     public function isAdmin(){
-        if ($this->role->name == "administrator" && $this->is_active == 1) {
+        if ($this->role->name == "administrator") {
             return true;
         }else{
             return false;    

@@ -25,21 +25,31 @@ Route::get('services', function () {
 });
 
 
+Route::group(['middleware' => 'auth'], function(){
 
-Route::group(['middleware'=> 'admin'], function(){
-	Route::get('admin', function () {
-    return view('admin.index');
+	Route::resource('admin/profile', 'ProfileController');
+
+		Route::group(['middleware'=> 'active'], function(){
+			Route::get('admin', function () {
+		    return view('admin.index');
+			});
+			Route::get('admin/categories/edit/{id}', ['as' => 'admin.categories.edit', 'uses' => 'CategoryController@edit']);
+			Route::get('admin/posts/edit/{id}', ['as' => 'admin.posts.edit', 'uses' => 'PostsController@edit']);
+			Route::get('admin/testimonials/edit/{id}', ['as' => 'admin.testimonials.edit', 'uses' => 'testimonialController@edit']);
+			
+			Route::resource('admin/categories', 'CategoryController');
+			Route::resource('admin/testimonials', 'testimonialController');
+			Route::resource('admin/portofolio', 'PortofolioController');
+			Route::resource('admin/posts', 'PostsController');
+
+			
+			Route::group(['middleware'=> 'admin'], function(){
+				Route::resource('admin/users', 'UsersController');
+			});
+
 	});
-	Route::get('admin/categories/edit/{id}', ['as' => 'admin.categories.edit', 'uses' => 'CategoryController@edit']);
-	Route::get('admin/posts/edit/{id}', ['as' => 'admin.posts.edit', 'uses' => 'PostsController@edit']);
-	Route::get('admin/testimonials/edit/{id}', ['as' => 'admin.testimonials.edit', 'uses' => 'testimonialController@edit']);
-	Route::resource('admin/user', 'UsersController');
-	Route::resource('admin/categories', 'CategoryController');
-	Route::resource('admin/testimonials', 'testimonialController');
-	Route::resource('admin/portofolio', 'PortofolioController');
-	Route::resource('admin/posts', 'PostsController');
-	
 });
+
 
 
 Auth::routes();
