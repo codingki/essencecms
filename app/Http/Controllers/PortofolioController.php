@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Portofolio;
 
 class PortofolioController extends Controller
 {
@@ -13,7 +14,8 @@ class PortofolioController extends Controller
      */
     public function index()
     {
-        //
+        $portofolio = Portofolio::all();
+        return view('admin.portofolio.index', compact('portofolio'));
     }
 
     /**
@@ -23,7 +25,7 @@ class PortofolioController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.portofolio.create');
     }
 
     /**

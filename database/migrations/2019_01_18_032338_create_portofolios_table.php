@@ -16,6 +16,7 @@ class CreatePortofoliosTable extends Migration
         Schema::create('portofolios', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('photo_id')->unsigned()->index();
+            $table->integer('thumbnail')->unsigned()->index();
             $table->string('title');
             $table->string('description');
             $table->string('month');
@@ -25,6 +26,7 @@ class CreatePortofoliosTable extends Migration
             $table->string('facebook')->nullable();
             $table->string('linkedin')->nullable();
             $table->string('youtube')->nullable();
+            $table->string('website')->nullable();
             $table->string('photos')->nullable();
             $table->string('video')->nullable();
             $table->timestamps();

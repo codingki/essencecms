@@ -8,7 +8,8 @@ class Portofolio extends Model
 {
     protected $fillable = [
         'title',
-        'logo',
+        'photo_id',
+        'thumbnail',
         'description',
         'month',
         'category',
@@ -17,12 +18,16 @@ class Portofolio extends Model
         'facebook',
         'linkedin',
         'youtube',
+        'website',
         'photos',
         'video',
     ];
 
     public function photo (){
     	return $this->belongsTo('App\Photo');
+    }
+    public function thumbnail (){
+        return $this->belongsTo('App\Photo');
     }
 }
 
