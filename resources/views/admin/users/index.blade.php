@@ -41,7 +41,6 @@
 											<th>Role</th>
 											<th>Status</th>
 											<th>Created at</th>
-											<th>Updated at</th>
 											<th>Actions</th>
 
 										</tr>
@@ -51,14 +50,41 @@
 										@foreach($users as $user)
 										<tr>
 											<td>{{ $user->id }}</td>
-											<td><img height="50" src="{{ url($user->photo->file) }}"></td>
+											<td><img height="50" src="{{ $user->photo ? URL::asset( $user->photo->file) : 'http://placehold.it/400x400'}}"></td>
 											<td>{{ $user->name }}</td>
         									<td>{{ $user->email }}</td>
         									<td>{{ $user->role->name }}</td>
         									<td>{{ $user->is_active ? 'Active' : 'Not Active' }}</td>
 											<td>{{$user->created_at->diffForHumans()}}</td>
-        									<td>{{$user->updated_at->diffForHumans()}}</td>
-											<td></td>
+											<td>
+												@if($user->is_active == 0)
+													<a href="{{ route('admin.users.updateActive', $user->id) }}" style="color:white;">
+														<button class="btn m-btn--pill btn-success">
+															<i class='fa fa-check'></i> Activate
+														</button>
+													</a>
+													@else
+													<a href="{{ route('admin.users.updateActive', $user->id) }}" style="color:white;">
+														<button class="btn m-btn--pill btn-danger">
+														 	<i class='fa fa-times'></i> Deactivate
+														</button>
+													</a>
+												@endif
+
+												@if($user->role_id == 2)
+													<a href="{{ route('admin.users.updateAdmin', $user->id) }}" style="color:white;">
+														<button class="btn m-btn--pill btn-success">
+															Jadikan seorang Admin 
+														</button>
+													</a>	
+													@else
+													<a href="{{ route('admin.users.updateAdmin', $user->id) }}" style="color:white;">
+														<button class="btn m-btn--pill btn-info">
+															Jadikan seorang Author
+														</button>
+													</a>
+												@endif
+											</td>
 										</tr>
 										@endforeach
 										@endif

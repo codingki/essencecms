@@ -45,6 +45,8 @@ Route::group(['middleware' => 'auth'], function(){
 			
 			Route::group(['middleware'=> 'admin'], function(){
 				Route::resource('admin/users', 'UsersController');
+				Route::get('admin/users/updateActive/{id}', ['as' => 'admin.users.updateActive', 'uses' => 'UsersController@updateActive']);
+				Route::get('admin/users/updateAdmin/{id}', ['as' => 'admin.users.updateAdmin', 'uses' => 'UsersController@updateAdmin']);
 			});
 
 	});

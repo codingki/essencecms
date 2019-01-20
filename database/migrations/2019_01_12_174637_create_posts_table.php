@@ -20,7 +20,9 @@ class CreatePostsTable extends Migration
             $table->integer('photo_id')->unsigned()->index();
             $table->string('title');
             $table->text('body');
+            $table->string('tags')->nullable();
             $table->string('slug')->nullable();
+            $table->integer('status')->default(0);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

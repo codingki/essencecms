@@ -7,6 +7,7 @@ use App\User;
 use App\Photo;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use App\Slim;
 
 class ProfileController extends Controller
 {
@@ -76,19 +77,21 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
+
         if (trim($request->password) == '') {
           $input = $request->except('password');
         }else{
           $input = $request->all();
           $input['password'] = bcrypt($request->password);
         }
-        
-        if ($file = $request->file('photo_id')) {
-          $name = time().$file->getClientOriginalName();
-          $file->move('storage/', $name);
-          $photo = Photo::create(['file'=>$name]);
-          $input['photo_id'] = $photo->id;
-
+        $images = Slim::getImages();
+        if (!empty($images)) {
+            $image = $images[0];
+            if ($user->photo_id) {
+                Photo::remove($user->photo->file, $user->photo_id);
+            }
+            
+            $input['photo_id'] = Photo::upload($image);
         }
         $user->update($input);
         Session::flash('success', 'Your profile has been updated');

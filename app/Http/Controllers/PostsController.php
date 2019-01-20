@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\Categories;
 use App\Photo;
+use App\Slim;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -45,11 +46,10 @@ class PostsController extends Controller
     {
         $input = $request->all();
         $user = Auth::user();
-        if ($file = $request->file('photo_id')) {
-            $name = time().$file->getClientOriginalName();
-            $file->move('storage', $name);
-            $photo = Photo::create(['file' => $name]);
-            $input['photo_id'] = $photo->id;
+        $images = Slim::getImages();
+        if (!empty($images)) {
+            $image = $images[0];
+            $input['photo_id'] = Photo::upload($image);
         }
         $user->posts()->create($input);
         Session::flash('success', 'Your Post has been created');
@@ -91,12 +91,12 @@ class PostsController extends Controller
     {   
         
         $input = $request->except('user_id');
-        
-        if ($file = $request->file('photo_id')) {
-            $name = time().$file->getClientOriginalName();
-            $file->move('images', $name);
-            $photo = Photo::create(['file' => $name]);
-            $input['photo_id'] = $photo->id;
+        $post = Post::findOrFail($id);
+        $images = Slim::getImages();
+        if (!empty($images)) {
+            $image = $images[0];
+            Photo::remove($images->photo->file, $images->photo_id);
+            $input['photo_id'] = Photo::upload($image);
         }
         Auth::user()->posts()->whereId($id)->first()->update($input);
         Session::flash('success', 'Your Post has been updated');

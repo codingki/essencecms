@@ -17,12 +17,10 @@ class UsersController extends Controller
      */
     public function index()
     {   
-        $user =  Auth::user();
-       
-        $profile = User::findOrFail($user->id);
-        return view('admin.user.edit', compact('profile'));
-        // $users = User::all();
-        // return view('admin.users.index', compact('users'));
+        
+        $users = User::all()->except(['id' => 1]);
+
+        return view('admin.users.index', compact('users'));
     }
 
     public function profile()
@@ -103,6 +101,36 @@ class UsersController extends Controller
         $user->update($input);
         Session::flash('success', 'Your profile has been updated');
         return redirect('/admin/profile');
+    }
+
+  
+
+    public function updateActive($id)
+    {
+        $user = User::findOrFail($id);
+        
+        if ($user->is_active == 0) {
+            $user->update(['is_active' => 1]);
+        }elseif($user->is_active == 1){
+            $user->update(['is_active' => 0]);
+        }
+        
+        Session::flash('success', 'User has been updated');
+        return redirect('/admin/users');
+    }
+
+    public function updateAdmin($id)
+    {
+        $user = User::findOrFail($id);
+        
+        if ($user->role_id == 1) {
+            $user->update(['role_id' => 2]);
+        }elseif($user->role_id == 2){
+            $user->update(['role_id' => 1]);
+        }
+        
+        Session::flash('success', 'User has been updated');
+        return redirect('/admin/users');
     }
 
     /**

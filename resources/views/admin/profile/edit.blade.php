@@ -1,5 +1,7 @@
 @extends('layouts.admin')
-
+@section('styles')
+<link href="{{ asset('css/slim.min.css') }}" rel="stylesheet" type="text/css" />
+@stop
 @section('content')
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
 
@@ -94,7 +96,18 @@
 														<div class="form-group m-form__group row">
 															<label for="example-text-input" class="col-2 col-form-label">Avatar</label>
 															<div class="col-7">
-																{!! Form::file('photo_id', null, ['class'=>'form-control m-input']) !!}
+																
+																<div class="slim"
+															         data-label="Drop your avatar here"
+															         
+															         data-size="240,240"
+															         data-ratio="1:1">
+															        <input type="file" name="slim[]" />
+															        
+															        @if($profile->photo)
+															        <img src="{{URL::asset( $profile->photo->file)}}">
+															    	@endif
+															    </div>
 															</div>
 														</div>
 													</div>
@@ -176,4 +189,9 @@
 								</div>
 							</div>
 						</div>
+@stop
+
+@section('scripts')
+<!--begin::Page Vendors -->
+		<script src="{{ asset('js/slim.kickstart.min.js') }}" type="text/javascript"></script>
 @stop

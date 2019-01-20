@@ -1,4 +1,7 @@
 @extends('layouts.admin')
+@section('styles')
+<link href="{{ asset('css/slim.min.css') }}" rel="stylesheet" type="text/css" />
+@stop
 @section('sub-header')
 <div class="m-subheader ">
 	<div class="d-flex align-items-center">
@@ -21,36 +24,63 @@
 @stop
 
 @section('content')
-
 {!! Form::model($post, ['method'=> 'PATCH', 'action' => ['PostsController@update', $post->id], 'files'=>true]) !!}
-<div class="form-group">
-    {!! Form::label('title', 'Title') !!}
-    {!! Form::text('title', null, ['class'=>'form-control']) !!}
-</div>
-<div class="form-group">
-    {!! Form::label('category_id', 'Category') !!}
-    {!! Form::select('category_id', [''=> 'Choose Categories'] + $categories,null, ['class'=>'form-control']) !!}
-</div>
-<div class="form-group">
-    {!! Form::label('photo_id', 'Thumbnail') !!}
-    <br>
-    <img src="{{url($post->photo->file)}}" width="100%">
-    {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
-</div>
-<div class="form-group">
-    {!! Form::label('body', 'Content') !!}
-    {!! Form::textarea('body', null, ['class'=>'form-control']) !!}
-</div>
+<div class="row">
+	<div class="col-md-6">
+		<div class="form-group">
+		    {!! Form::label('title', 'Title') !!}
+		    {!! Form::text('title', null, ['class'=>'form-control']) !!}
+		</div>
+		<div class="form-group">
+		    {!! Form::label('category_id', 'Category') !!}
+		    {!! Form::select('category_id', [''=> 'Choose Categories'] + $categories,null, ['class'=>'form-control']) !!}
+		</div>
+		<div class="form-group">
+		    {!! Form::label('status', 'Status') !!}
+		    {!! Form::select('status', array( 0 => 'Draft', 1=> 'Publish'), null , ['class'=>'form-control']) !!}
+		</div>
+		<div class="form-group">
+		    {!! Form::label('tags', 'Tags') !!}
+		    {!! Form::textarea('tags', null, ['class'=>'form-control','rows' => 9 ]) !!}
+		</div>
 
+	</div>
+	<div class="col-md-6">	
+		<div class="form-group">
+		    <div class="slim"
+		         data-label="Thumbnail"
+		         
+		         data-size="400,300"
+		         data-ratio="4:3">
+		        <input type="file" name="slim[]" />
+		        <img src="{{URL::asset( $post->photo->file)}}">
+		    </div>
+		</div>
+	</div>
+	<div class="col-md-12">
+		<div class="form-group">
+		    {!! Form::label('body', 'Content') !!}
+		    {!! Form::textarea('body', null, ['class'=>'form-control']) !!}
+		</div>
+	</div>
 
-<div class="form-group">
-    {!! Form::submit('Edit Post', ['class'=>'btn btn-primary pull-left']) !!}
-</div>
+	<div class="col-md-12">
+		<div class="form-group pull-right">
+		    {!! Form::submit('Save Post', ['class'=>'btn btn-primary']) !!}
+		</div>
+	
 {!! Form::close() !!}
+
 {!! Form::open(['method'=> 'DELETE', 'action' => ['PostsController@destroy', $post->id ]]) !!}
-    <div class="form-group">
-        {!! Form::submit('Delete Post', ['class' => 'btn btn-danger pull-right']) !!}
-    </div>
+	    <div class="form-group pull-left">
+	        {!! Form::submit('Delete Post', ['class' => 'btn btn-danger pull-right']) !!}
+	    </div>
 {!! Form::close() !!}
+	</div>
+</div>
 <div style="clear:both; "></div>
+@stop
+@section('scripts')
+<!--begin::Page Vendors -->
+		<script src="{{ asset('js/slim.kickstart.min.js') }}" type="text/javascript"></script>
 @stop

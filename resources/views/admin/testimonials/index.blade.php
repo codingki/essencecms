@@ -69,7 +69,9 @@
 											<td>{{$testi->name}}</td>
 											<td>{{$testi->created_at->diffForHumans()}}</td>
         									<td>{{$testi->updated_at->diffForHumans()}}</td>
-        									<td><a href="{{route('admin.testimonials.edit', $testi->id)}}"><i class="fa fa-edit"> Edit</i></a></td>
+        									<td>
+        										<a href="{{route('admin.testimonials.edit', $testi->id)}}" ><button style="color:white;" class="btn m-btn--pill btn-info "><i class="fa fa-edit"></i>Edit</button></a>
+        									</td>
 											
 											
 										</tr>

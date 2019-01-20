@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Testimonial;
 use App\Photo;
 use Illuminate\Support\Facades\Session;
+use App\Slim;
 
 class testimonialController extends Controller
 {
@@ -40,11 +41,11 @@ class testimonialController extends Controller
     {
         $input = $request->all();
         
-        if ($file = $request->file('photo_id')) {
-            $name = time().$file->getClientOriginalName();
-            $file->move('storage', $name);
-            $photo = Photo::create(['file' => $name]);
-            $input['photo_id'] = $photo->id;
+        $images = Slim::getImages();
+        if (!empty($images)) {
+            $image = $images[0];
+            
+            $input['photo_id'] = Photo::upload($image);
         }
         Testimonial::create($input);
         Session::flash('success', 'Your Testimonial has been created');
@@ -85,14 +86,15 @@ class testimonialController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
-        
-        if ($file = $request->file('photo_id')) {
-            $name = time().$file->getClientOriginalName();
-            $file->move('images', $name);
-            $photo = Photo::create(['file' => $name]);
-            $input['photo_id'] = $photo->id;
-        }
         $testi = Testimonial::findOrFail($id);
+
+        $images = Slim::getImages();
+        if (!empty($images)) {
+            $image = $images[0];
+            Photo::remove($testi->photo->file, $testi->photo_id);
+            $input['photo_id'] = Photo::upload($image);
+        }
+        
         $testi->update($input);
         Session::flash('success', 'Your Testimonial has been updated');
         return redirect('/admin/testimonials');

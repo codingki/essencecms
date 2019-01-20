@@ -69,7 +69,7 @@
 											<td>{{$testi->month}}</td>
 											<td>{{$porto->created_at->diffForHumans()}}</td>
         									<td>{{$porto->updated_at->diffForHumans()}}</td>
-        									<td><a href="{{route('admin.portofolio.edit', $porto->id)}}"><i class="fa fa-edit"> Edit</i></a></td>
+        									<td><a href="{{route('admin.portofolio.edit', $porto->id)}}" style="color: white;"><button class="btn m-btn--pill btn-info "><i class="fa fa-edit"> Edit</i></button></a></td>
 											
 											
 										</tr>

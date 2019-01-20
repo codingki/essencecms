@@ -41,7 +41,13 @@
 				<td>{{$category->id}}</td>
 				<td>{{$category->name}}</a></td>
 				<td>{{$category->created_at->diffForHumans()}}</td>
-				<td><a href="{{route('admin.categories.edit', $category->id)}}"><i class="fa fa-edit"></i> Edit</a></td>
+				<td>
+					<a href="{{route('admin.categories.edit', $category->id)}}" style="color: white;">
+					<button class="btn m-btn--pill btn-info ">
+						<i class="fa fa-edit"></i> Edit
+					</button>
+					</a>	
+				</td>
 			</tr>
 			@endforeach
 		</tbody>
