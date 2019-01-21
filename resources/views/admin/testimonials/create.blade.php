@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 @section('styles')
 <link href="{{ asset('css/slim.min.css') }}" rel="stylesheet" type="text/css" />
+
 @stop
 @section('sub-header')
 <div class="m-subheader ">
@@ -37,12 +38,13 @@
 			         
 			         data-size="500,500"
 			         data-ratio="1:1">
-			        <input type="file" name="slim[]" required />
+			        <input type="file" name="slim[]" required/>
 			    </div>
 			
 		</div>
 	</div>
 	<div class="col-md-6">
+		
 		<div class="form-group">
 		    {!! Form::label('name', 'Name') !!}
 		    {!! Form::text('name', null, ['class'=>'form-control']) !!}
@@ -66,4 +68,5 @@
 @section('scripts')
 <!--begin::Page Vendors -->
 		<script src="{{ asset('js/slim.kickstart.min.js') }}" type="text/javascript"></script>
+		
 @stop

@@ -53,6 +53,7 @@
 											<th>Logo</th>
 											<th>Client</th>
 											<th>Month</th>
+											<th>Category</th>
 											<th>Created at</th>
 											<th>Updated at</th>
 											<th>Actions</th>
@@ -63,14 +64,14 @@
 										@if($portofolio)
 										@foreach($portofolio as $porto)
 										<tr>
-											<td>{{$testi->id}}</td>
-											<td><img height="50" src="{{url($testi->photo->file)}}"></td>
-											<td>{{$testi->client}}</td>
-											<td>{{$testi->month}}</td>
+											<td>{{$porto->id}}</td>
+											<td><img height="50" src="{{ $porto->photo->file }}"></td>
+											<td>{{ $porto->title }}</td>
+											<td>{{ $porto->month }}</td>
+											<td>{{ $porto->category }}</td>
 											<td>{{$porto->created_at->diffForHumans()}}</td>
         									<td>{{$porto->updated_at->diffForHumans()}}</td>
-        									<td><a href="{{route('admin.portofolio.edit', $porto->id)}}" style="color: white;"><button class="btn m-btn--pill btn-info "><i class="fa fa-edit"> Edit</i></button></a></td>
-											
+        									<td></td>
 											
 										</tr>
 										@endforeach
