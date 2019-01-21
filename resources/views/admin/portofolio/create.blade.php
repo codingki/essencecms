@@ -44,7 +44,7 @@
 			         
 			         data-size="500,500"
 			         data-ratio="1:1">
-			        <input type="file" name="slim[]" required/>
+			        <input type="file" name="logo[]" required/>
 			    </div>
 			
 		</div>
@@ -106,6 +106,10 @@
 		</div>
 	</div>
 	<div class="col-md-12">
+		<div class="form-group">
+		    {!! Form::label('video', 'Video Portofolio Project Link') !!}
+		    {!! Form::text('video', null, ['class'=>'form-control']) !!}
+		</div>
 		<div class="file-drop-area">
 			<label for="files">Drop your files here</label>
 			<input name="slim[]" id="files" type="file" multiple>

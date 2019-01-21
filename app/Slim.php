@@ -38,6 +38,34 @@ class Slim {
 
     }
 
+    public static function getLogo($inputName = 'logo') {
+
+        $values = Slim::getPostData($inputName);
+
+        // test for errors
+        if ($values === false) {
+            return false;
+        }
+
+        // determine if contains multiple input values, if is singular, put in array
+        $data = array();
+        if (!is_array($values)) {
+            $values = array($values);
+        }
+
+        // handle all posted fields
+        foreach ($values as $value) {
+            $inputValue = Slim::parseInput($value);
+            if ($inputValue) {
+                array_push($data, $inputValue);
+            }
+        }
+
+        // return the data collected from the fields
+        return $data;
+
+    }
+
     // $value should be in JSON format
     private static function parseInput($value) {
 

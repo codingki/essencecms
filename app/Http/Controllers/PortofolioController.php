@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Slim;
+use App\Photo;
 use App\Portofolio;
 use Illuminate\Support\Facades\Session;
+
 
 class PortofolioController extends Controller
 {
@@ -37,7 +40,24 @@ class PortofolioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        
+        $logos = Slim::getLogo();
+        if (!empty($logos)) {
+            $logo = $logos[0];
+            $input['photo_id'] = Photo::upload($logo);
+        }
+
+        $images = Slim::getImages();
+        if (!empty($images)) {
+            $image = $images;
+            $input['photos'] = Photo::uploadAll($image);
+        }
+        return $input;
+        // Portofolio::create($input);
+        // Session::flash('success', 'Your Portofolio has been created');
+        // return redirect('/admin/portofolio');
+    
     }
 
     /**
