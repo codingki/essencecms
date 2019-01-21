@@ -65,7 +65,7 @@
 										@foreach($portofolio as $porto)
 										<tr>
 											<td>{{$porto->id}}</td>
-											<td><img height="50" src="{{ $porto->photo->file }}"></td>
+											<td><img height="50" src="{{ url($porto->photo->file) }}"></td>
 											<td>{{ $porto->title }}</td>
 											<td>{{ $porto->month }}</td>
 											<td>{{ $porto->category }}</td>

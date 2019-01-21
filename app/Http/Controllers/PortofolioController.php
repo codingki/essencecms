@@ -47,16 +47,22 @@ class PortofolioController extends Controller
             $logo = $logos[0];
             $input['photo_id'] = Photo::upload($logo);
         }
+        $thumbnails = Slim::getThumbnail();
+        if (!empty($thumbnails)) {
+            $thumbnail = $thumbnails[0];
+            $input['thumbnail'] = Photo::upload($thumbnail);
+        }
 
         $images = Slim::getImages();
         if (!empty($images)) {
             $image = $images;
-            $input['photos'] = Photo::uploadAll($image);
+            $input['photos'] = serialize(Photo::uploadAll($image));
         }
-        return $input;
-        // Portofolio::create($input);
-        // Session::flash('success', 'Your Portofolio has been created');
-        // return redirect('/admin/portofolio');
+        
+        
+        Portofolio::create($input);
+        Session::flash('success', 'Your Portofolio has been created');
+        return redirect('/admin/portofolio');
     
     }
 
@@ -79,7 +85,8 @@ class PortofolioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $porto = Portofolio::findOrFail($id);
+        return view('admin.portofolio.edit', compact('porto'));
     }
 
     /**
@@ -91,7 +98,29 @@ class PortofolioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+        $porto = Portofolio::findOrFail($id);
+
+        $logos = Slim::getLogo();
+        if (!empty($logos)) {
+            $logo = $logos[0];
+            $input['photo_id'] = Photo::upload($logo);
+        }
+        $thumbnails = Slim::getThumbnail();
+        if (!empty($thumbnails)) {
+            $thumbnail = $thumbnails[0];
+            $input['thumbnail'] = Photo::upload($thumbnail);
+        }
+
+        $images = Slim::getImages();
+        if (!empty($images)) {
+            $image = $images;
+            $input['photos'] = serialize(Photo::uploadAll($image));
+        }
+        
+        $porto->update($input);
+        Session::flash('success', 'Your Testimonial has been updated');
+        return redirect('/admin/testimonials');
     }
 
     /**

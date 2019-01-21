@@ -26,8 +26,8 @@ class Portofolio extends Model
     public function photo (){
     	return $this->belongsTo('App\Photo');
     }
-    public function thumbnail (){
-        return $this->belongsTo('App\Photo');
+    public function thumbnail_image (){
+        return $this->belongsTo('App\Photo', 'thumbnail');
     }
 }
 

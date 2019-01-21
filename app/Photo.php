@@ -24,22 +24,12 @@ class Photo extends Model
     }
 
     public static function uploadAll($images){
-        // $values = $images;
-        $data = array();
-        // if (!is_array($values)) {
-        //     $values = images($values);
-        // }
+        $items = array();
         foreach ($images as $image ) {
-            $name = time().$image['output']['name'];
-            $data = $image['output']['data'];
-            $save = Slim::saveFile($data, $name, 'storage/');
-            $photo = Photo::create(['file'=>$name]);
-            $photoid = $photo->id;
-            array_push($data, $photoid);
+            $photo =  Photo::upload($image);
+            $items[] = $photo;
         }
-        
-        
-        return $data;
+        return $items;
     }
 
     public static function remove($file, $photo_id){

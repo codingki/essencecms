@@ -37,73 +37,78 @@
 {!! Form::open(['method'=> 'POST', 'action' => 'PortofolioController@store', 'files'=>true]) !!}
 <div class="row">
 	
-	<div class="col-md-4">
+	<div class="col-md-3">
 		<label>Logo/Client Photo</label>
-		    	<div class="slim"
-			         data-label="Drop your image here"
-			         
-			         data-size="500,500"
-			         data-ratio="1:1">
-			        <input type="file" name="logo[]" required/>
-			    </div>
-			
-		</div>
+    	<div class="slim"
+	         data-label="Drop logo here"
+	         
+	         data-size="500,500"
+	         data-ratio="1:1">
+	        <input type="file" name="logo[]" required/>
+	    </div>
+	    <label>Thumbnail</label>
+    	<div class="slim"
+	         data-label="Drop thumbnail here"
+	         
+	         data-size="500,500"
+	         data-ratio="1:1">
+	        <input type="file" name="thumbnail[]" required/>
+	    </div>
+	</div>
 	
-	<div class="col-md-8">
+	<div class="col-md-9">
 		<div class="form-group">
 		    {!! Form::label('title', 'Client/Brand Name') !!}
 		    {!! Form::text('title', null, ['class'=>'form-control']) !!}
 		</div>		
-		<div class="row">
-			<div class="col-md-6">
-				<div class="form-group">
-				    {!! Form::label('month', 'Month') !!}
-				    {!! Form::text('month', null, ['class'=>'form-control']) !!}
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form-group">
-				    {!! Form::label('category', 'Category Project') !!}
-				    {!! Form::text('category', null, ['class'=>'form-control']) !!}
-				</div>			
-			</div>
+		<div class="form-group">
+		    {!! Form::label('month', 'Month') !!}
+		    {!! Form::text('month', null, ['class'=>'form-control']) !!}
 		</div>
+		<div class="form-group">
+		    {!! Form::label('category', 'Category Project') !!}
+		    {!! Form::text('category', null, ['class'=>'form-control']) !!}
+		</div>	
+			
+		
 		<div class="form-group">
 		    {!! Form::label('description', 'About the project') !!}
-		    {!! Form::textarea('description', null, ['class'=>'form-control', 'rows' => 12]) !!}
+		    {!! Form::textarea('description', null, ['class'=>'form-control', 'rows' => 4]) !!}
 		</div>
-		
-	</div>
-	
+		<div class="row">
 
-	<div class="col-md-6">		
-		<div class="form-group">
-		    {!! Form::label('facebook', 'Facebook Link') !!}
-		    {!! Form::text('facebook', null, ['class'=>'form-control']) !!}
-		</div>
-		<div class="form-group">
-		    {!! Form::label('instagram', 'Instagram Link') !!}
-		    {!! Form::text('instagram', null, ['class'=>'form-control']) !!}
-		</div>
-		<div class="form-group">
-		    {!! Form::label('twitter', 'Twitter Link') !!}
-		    {!! Form::text('twitter', null, ['class'=>'form-control']) !!}
+			<div class="col-md-6">		
+				<div class="form-group">
+				    {!! Form::label('facebook', 'Facebook Link') !!}
+				    {!! Form::text('facebook', null, ['class'=>'form-control']) !!}
+				</div>
+				<div class="form-group">
+				    {!! Form::label('instagram', 'Instagram Link') !!}
+				    {!! Form::text('instagram', null, ['class'=>'form-control']) !!}
+				</div>
+				<div class="form-group">
+				    {!! Form::label('twitter', 'Twitter Link') !!}
+				    {!! Form::text('twitter', null, ['class'=>'form-control']) !!}
+				</div>
+				
+			</div>
+			<div class="col-md-6">
+				<div class="form-group">
+				    {!! Form::label('linkedin', 'Linkedin Link') !!}
+				    {!! Form::text('linkedin', null, ['class'=>'form-control']) !!}
+				</div>
+				<div class="form-group">
+				    {!! Form::label('youtube', 'Youtube Link') !!}
+				    {!! Form::text('youtube', null, ['class'=>'form-control']) !!}
+				</div>
+				<div class="form-group">
+				    {!! Form::label('website', 'Website Link') !!}
+				    {!! Form::text('website', null, ['class'=>'form-control']) !!}
+				</div>
+			</div>
+
 		</div>
 		
-	</div>
-	<div class="col-md-6">
-		<div class="form-group">
-		    {!! Form::label('linkedin', 'Linkedin Link') !!}
-		    {!! Form::text('linkedin', null, ['class'=>'form-control']) !!}
-		</div>
-		<div class="form-group">
-		    {!! Form::label('youtube', 'Youtube Link') !!}
-		    {!! Form::text('youtube', null, ['class'=>'form-control']) !!}
-		</div>
-		<div class="form-group">
-		    {!! Form::label('website', 'Website Link') !!}
-		    {!! Form::text('website', null, ['class'=>'form-control']) !!}
-		</div>
 	</div>
 	<div class="col-md-12">
 		<div class="form-group">
@@ -111,14 +116,15 @@
 		    {!! Form::text('video', null, ['class'=>'form-control']) !!}
 		</div>
 		<div class="file-drop-area">
-			<label for="files">Drop your files here</label>
+			
+			<label for="files">Drop your images/photos portofolio here</label>
 			<input name="slim[]" id="files" type="file" multiple>
 		</div>
 	</div>
 
 	<div class="col-md-12" style="padding-top:20px;">
 		<div class="form-group">
-		    {!! Form::submit('Create Testimonial', ['class'=>'btn btn-primary']) !!}
+		    {!! Form::submit('Create Portofolio', ['class'=>'btn btn-primary']) !!}
 		</div>
 	</div>	
 	
