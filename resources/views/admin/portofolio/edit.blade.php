@@ -38,18 +38,20 @@
 <div class="row">
 	
 	<div class="col-md-3">
-		<label>Logo/Client Photo</label>
+		<label>Logo/Client Photo*</label>
     	<div class="slim"
 	         data-label="Drop logo here"
 	         data-save-initial-image=true
+	         data-max-file-size=1
 	         data-size="500,500"
 	         data-ratio="1:1">
 	        <input type="file" name="logo[]"  />
 	        <img src="{{URL::asset($porto->photo->file)}} " >
 	    </div>
-	    <label>Thumbnail</label>
+	    <label>Thumbnail*</label>
     	<div class="slim"
 	         data-label="Drop thumbnail here"
+	         data-max-file-size=1
 	         data-save-initial-image=true
 	         data-size="500,500"
 	         data-ratio="1:1">
@@ -60,22 +62,22 @@
 	
 	<div class="col-md-9">
 		<div class="form-group">
-		    {!! Form::label('title', 'Client/Brand Name') !!}
-		    {!! Form::text('title', null, ['class'=>'form-control']) !!}
+		    {!! Form::label('title', 'Client/Brand Name*') !!}
+		    {!! Form::text('title', null, ['class'=>'form-control', 'required' => 'required']) !!}
 		</div>		
 		<div class="form-group">
-		    {!! Form::label('month', 'Month') !!}
-		    {!! Form::text('month', null, ['class'=>'form-control']) !!}
+		    {!! Form::label('month', 'Month*') !!}
+		    {!! Form::text('month', null, ['class'=>'form-control', 'required' => 'required']) !!}
 		</div>
 		<div class="form-group">
-		    {!! Form::label('category', 'Category Project') !!}
-		    {!! Form::text('category', null, ['class'=>'form-control']) !!}
+		    {!! Form::label('category', 'Category Project*') !!}
+		    {!! Form::text('category', null, ['class'=>'form-control', 'required' => 'required']) !!}
 		</div>	
 			
 		
 		<div class="form-group">
-		    {!! Form::label('description', 'About the project') !!}
-		    {!! Form::textarea('description', null, ['class'=>'form-control', 'rows' => 4]) !!}
+		    {!! Form::label('description', 'About the project*') !!}
+		    {!! Form::textarea('description', null, ['class'=>'form-control', 'rows' => 4, 'required' => 'required']) !!}
 		</div>
 		<div class="row">
 
@@ -140,13 +142,22 @@
 	</div>
 
 	<div class="col-md-12" style="padding-top:20px;">
-		<div class="form-group">
+		<div class="form-group pull-right">
 		    {!! Form::submit('Save Portofolio', ['class'=>'btn btn-primary']) !!}
 		</div>
-	</div>	
+	
+{!! Form::close() !!}
+
+{!! Form::open(['method'=> 'DELETE', 'action' => ['PortofolioController@destroy', $porto->id ]]) !!}
+	    <div class="form-group pull-left">
+	        {!! Form::submit('Delete Portofolio', ['class' => 'btn btn-danger pull-right']) !!}
+	    </div>
+{!! Form::close() !!}
+
+</div>	
 	
 </div>
-{!! Form::close() !!}
+
 @stop
 @section('scripts')
 <script src="{{ asset('js/slim.kickstart.min.js') }}" type="text/javascript"></script>
@@ -213,14 +224,14 @@ function handleItem(item) {
 // our expectations
 function handleFile(file) {
 
-  /*
+  
   // you can check if the file fits all requirements here
   // for example:
   // if file is bigger then 1 MB don't load
   if (file.size > 1000000) {
     return;
   }
-  */
+  
 
   // if it does, create a cropper
   createCropper(file);

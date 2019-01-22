@@ -83,24 +83,23 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-        if (trim($request->password) == '') {
-          $input = $request->except('password');
-        }else{
-          $input = $request->all();
-          $input['password'] = bcrypt($request->password);
-        }
+        // $user = User::findOrFail($id);
+        // if (trim($request->password) == '') {
+        //   $input = $request->except('password');
+        // }else{
+        //   $input = $request->all();
+        //   $input['password'] = bcrypt($request->password);
+        // }
         
-        if ($file = $request->file('photo_id')) {
-          $name = time().$file->getClientOriginalName();
-          $file->move('storage/', $name);
-          $photo = Photo::create(['file'=>$name]);
-          $input['photo_id'] = $photo->id;
-
-        }
-        $user->update($input);
-        Session::flash('success', 'Your profile has been updated');
-        return redirect('/admin/profile');
+        // $images = Slim::getImages();
+        // if (!empty($images)) {
+        //     $image = $images[0];
+        //     Photo::remove($user->photo->file, $user->photo_id);
+        //     $input['photo_id'] = Photo::upload($image);
+        // }
+        // $user->update($input);
+        // Session::flash('success', 'Your profile has been updated');
+        // return redirect('/admin/profile');
     }
 
   

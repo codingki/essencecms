@@ -35,7 +35,7 @@
 		    
 			    <div class="slim"
 			         data-label="Drop your image here"
-			         
+			         data-max-file-size=1
 			         data-size="500,500"
 			         data-ratio="1:1">
 			        <input type="file" name="slim[]" required/>
@@ -46,17 +46,17 @@
 	<div class="col-md-6">
 		
 		<div class="form-group">
-		    {!! Form::label('name', 'Name') !!}
-		    {!! Form::text('name', null, ['class'=>'form-control']) !!}
+		    {!! Form::label('name', 'Name*') !!}
+		    {!! Form::text('name', null, ['class'=>'form-control', 'required' => 'required']) !!}
 		</div>
 		<div class="form-group">
-		    {!! Form::label('client', 'Client/Brand') !!}
-		    {!! Form::text('client', null, ['class'=>'form-control']) !!}
+		    {!! Form::label('client', 'Client/Brand*') !!}
+		    {!! Form::text('client', null, ['class'=>'form-control', 'required' => 'required']) !!}
 		</div>
 
 		<div class="form-group">
-		    {!! Form::label('body', 'Testimoni') !!}
-		    {!! Form::textarea('body', null, ['class'=>'form-control']) !!}
+		    {!! Form::label('body', 'Testimoni*') !!}
+		    {!! Form::textarea('body', null, ['class'=>'form-control', 'required' => 'required']) !!}
 		</div>
 		<div class="form-group pull-right">
 	    {!! Form::submit('Create Testimonial', ['class'=>'btn btn-primary']) !!}

@@ -95,7 +95,7 @@ class PostsController extends Controller
         $images = Slim::getImages();
         if (!empty($images)) {
             $image = $images[0];
-            Photo::remove($images->photo->file, $images->photo_id);
+            Photo::remove($post->photo->file, $post->photo_id);
             $input['photo_id'] = Photo::upload($image);
         }
         Auth::user()->posts()->whereId($id)->first()->update($input);
@@ -112,7 +112,7 @@ class PostsController extends Controller
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
-        unlink(public_path() ."/". $post->photo->file);
+        Photo::remove($post->photo->file, $post->photo_id);
         $post->delete();
         Session::flash('success', 'Your Post has been deleted');
         return redirect('/admin/posts');

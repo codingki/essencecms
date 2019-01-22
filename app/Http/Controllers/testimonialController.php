@@ -110,6 +110,7 @@ class testimonialController extends Controller
     public function destroy($id)
     {
         Testimonial::findOrFail($id)->delete();
+        Photo::remove($testi->photo->file, $testi->photo_id);
         Session::flash('success', 'Your Testimonial has been deleted');
         return redirect('/admin/testimonials');
     }

@@ -29,12 +29,12 @@
 <div class="row">
 	<div class="col-md-6">
 		<div class="form-group">
-		    {!! Form::label('title', 'Title') !!}
-		    {!! Form::text('title', null, ['class'=>'form-control']) !!}
+		    {!! Form::label('title', 'Title*') !!}
+		    {!! Form::text('title', null, ['class'=>'form-control', 'required' => 'required']) !!}
 		</div>
 		<div class="form-group">
-		    {!! Form::label('category_id', 'Category') !!}
-		    {!! Form::select('category_id', [''=> 'Choose Categories'] + $categories,null, ['class'=>'form-control']) !!}
+		    {!! Form::label('category_id', 'Category*') !!}
+		    {!! Form::select('category_id', [''=> 'Choose Categories'] + $categories,null, ['class'=>'form-control', 'required' => 'required']) !!}
 		</div>
 		<div class="form-group">
 		    {!! Form::label('status', 'Status') !!}
@@ -49,9 +49,10 @@
 	<div class="col-md-6">	
 		<div class="form-group">
 		    <div class="slim"
-		         data-label="Thumbnail"
-		         
-		         data-size="400,300"
+		         data-label="Thumbnail*"
+		         data-save-initial-image=true
+		         data-max-file-size=1
+		         data-size="800,600"
 		         data-ratio="4:3">
 		        <input type="file" name="slim[]" required />
 		        
@@ -60,8 +61,8 @@
 	</div>
 	<div class="col-md-12">
 		<div class="form-group">
-		    {!! Form::label('body', 'Content') !!}
-		    {!! Form::textarea('body', null, ['class'=>'form-control']) !!}
+		    {!! Form::label('body', 'Content*') !!}
+		    {!! Form::textarea('body', null, ['class'=>'form-control', 'required' => 'required']) !!}
 		</div>
 	</div>
 

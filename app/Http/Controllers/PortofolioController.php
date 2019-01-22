@@ -61,7 +61,7 @@ class PortofolioController extends Controller
         
         
         Portofolio::create($input);
-        Session::flash('success', 'Your Portofolio has been created');
+        Session::flash('success', 'Portofolio has been created');
         return redirect('/admin/portofolio');
     
     }
@@ -104,23 +104,26 @@ class PortofolioController extends Controller
         $logos = Slim::getLogo();
         if (!empty($logos)) {
             $logo = $logos[0];
+            Photo::remove($porto->photo->file, $porto->photo_id);
             $input['photo_id'] = Photo::upload($logo);
         }
         $thumbnails = Slim::getThumbnail();
         if (!empty($thumbnails)) {
             $thumbnail = $thumbnails[0];
+            Photo::remove($porto->thumbnail_image->file, $porto->thumbnail);
             $input['thumbnail'] = Photo::upload($thumbnail);
         }
 
         $images = Slim::getImages();
         if (!empty($images)) {
             $image = $images;
+            Photo::removeAll(unserialize($porto->photos));
             $input['photos'] = serialize(Photo::uploadAll($image));
         }
         
         $porto->update($input);
-        Session::flash('success', 'Your Testimonial has been updated');
-        return redirect('/admin/testimonials');
+        Session::flash('success', 'Portofolio has been updated');
+        return redirect('/admin/portofolio');
     }
 
     /**
@@ -131,6 +134,12 @@ class PortofolioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $porto = Portofolio::findOrFail($id);
+        Photo::remove($porto->photo->file, $porto->photo_id);
+        Photo::remove($porto->thumbnail_image->file, $porto->thumbnail);
+        Photo::removeAll(unserialize($porto->photos));
+        $porto->delete();
+        Session::flash('success', 'Portofolio has been deleted');
+        return redirect('/admin/portofolio');
     }
 }
