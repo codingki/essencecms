@@ -26,6 +26,7 @@ Route::get('services', function () {
 
 
 Route::group(['middleware' => 'auth'], function(){
+	
 
 	Route::resource('admin/profile', 'ProfileController');
 
@@ -42,7 +43,8 @@ Route::group(['middleware' => 'auth'], function(){
 			Route::resource('admin/testimonials', 'testimonialController');
 			Route::resource('admin/portofolio', 'PortofolioController');
 			Route::resource('admin/posts', 'PostsController');
-
+			Route::get('/laravel-filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show');
+    		Route::post('/laravel-filemanager/upload', '\UniSharp\LaravelFilemanager\Controllers\UploadController@upload');
 			
 			Route::group(['middleware'=> 'admin'], function(){
 				Route::resource('admin/users', 'UsersController');
