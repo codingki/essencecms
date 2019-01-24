@@ -164,6 +164,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        CyrildeWit\EloquentViewable\EloquentViewableServiceProvider::class,
         /*
          * Package Service Providers...
          */

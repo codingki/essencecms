@@ -4,7 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
-class Portofolio extends Model
+use CyrildeWit\EloquentViewable\Viewable;
+use CyrildeWit\EloquentViewable\Contracts\Viewable as ViewableContract;
+class Portofolio extends Model implements ViewableContract
 {
     protected $fillable = [
         'title',
@@ -25,6 +27,7 @@ class Portofolio extends Model
     ];
 
     use Sluggable;
+    use Viewable;
 
     /**
      * Return the sluggable configuration array for this model.

@@ -122,6 +122,9 @@ class PostsController extends Controller
         $categories = Categories::all();
         $recent = Post::all()->sortByDesc("created_at")->take(10);
         $blog = Post::where('slug', $slug)->first();
+        $cat = Categories::where('id', $blog->category_id)->first();
+        views($blog)->record();
+        views($cat)->record();
         if ($blog) {
             return view('public.blog.single', compact('blog', 'categories', 'recent'));
         }else{

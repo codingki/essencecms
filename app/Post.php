@@ -4,8 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use CyrildeWit\EloquentViewable\Viewable;
+use CyrildeWit\EloquentViewable\Contracts\Viewable as ViewableContract;
 
-class Post extends Model
+class Post extends Model implements ViewableContract
 {
     //
     protected $fillable = [
@@ -13,6 +15,7 @@ class Post extends Model
     ];
 
     use Sluggable;
+    use Viewable;
 
     /**
      * Return the sluggable configuration array for this model.

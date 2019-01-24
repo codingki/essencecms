@@ -145,6 +145,7 @@ class PortofolioController extends Controller
 
     public function post($slug){
         $porto = Portofolio::where('slug', $slug)->first();
+        views($porto)->record();
         if ($porto) {
             return view('public.portofolio.single', compact('porto'));
         }else{
