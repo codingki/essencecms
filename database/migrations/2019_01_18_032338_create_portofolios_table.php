@@ -27,7 +27,7 @@ class CreatePortofoliosTable extends Migration
             $table->string('linkedin')->nullable();
             $table->string('youtube')->nullable();
             $table->string('website')->nullable();
-            $table->string('photos')->nullable();
+            $table->text('photos')->nullable();
             $table->string('video')->nullable();
             $table->string('slug')->nullable();
             $table->timestamps();

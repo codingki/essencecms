@@ -4,31 +4,35 @@
 						<div class="col-10 col-md-10 col-lg-10 col-xl-10 pl-0">
 							<div class="row">
 								<div class="site-branding">
-									<a class="normal_logo" href="./" rel="home">
-										<img src="images/elogo.png" alt="essence" />
+									<a class="normal_logo" href="{{ url('') }}" rel="home">
+										<img src="{{ url('images/elogo.png') }}" alt="essence" />
 									</a>
 								</div>
 								<nav class="main-navigation d-none d-lg-block">
 									<div class="primary-menu">
 										<ul class="main-menu">
 											<li class="menu-item-has-children mega-menu">
-												<a href="./">Home</a>
+												<a href="{{ url('') }}">Home</a>
 
 											</li>
 											<li class="menu-item-has-children mega-menu">
-												<a href="services">Services</a>
+												<a href="{{ url('services')}}">Services</a>
 
 											</li>
 											<li class="menu-item-has-children mega-menu">
-												<a href="portfolio">Portfolio</a>
+												<a href="{{ url('portofolio')}}">Portfolio</a>
 
 											</li>
 											<li class="menu-item-has-children mega-menu">
-												<a href="about">About us</a>
+												<a href="{{ url('about')}}">About us</a>
 
 											</li>
 											<li class="menu-item-has-children mega-menu">
-												<a href="contact">Contact</a>
+												<a href="{{ url('blog')}}">Blog</a>
+
+											</li>
+											<li class="menu-item-has-children mega-menu">
+												<a href="{{ url('contact')}}">Contact</a>
 
 											</li>
 										</ul>
@@ -48,8 +52,8 @@
 			<div id="page-mobile-main-menu" class="page-mobile-main-menu">
 				<div class="page-mobile-menu-header">
 					<div class="page-mobile-menu-logo">
-						<a href="./">
-							<img src="images/elogo.png" alt=""/>
+						<a href="{{ url('') }}">
+							<img src="{{ url('images/elogo.png') }}" alt=""/>
 						</a>
 					</div>
 					<div id="page-close-mobile-menu" class="page-close-mobile-menu">
@@ -58,31 +62,37 @@
 				</div>
 				<ul class="mobile-menu">
 					<li>
-						<a href="./">
+						<a href="{{ url('')}}">
 							<span class="menu-item-title">Home</span>
 
 						</a>
 					</li>
 					<li>
-						<a href="services">
+						<a href="{{ url('services')}}">
 							<span class="menu-item-title">Services</span>
 
 						</a>
 					</li>
 					<li>
-						<a href="portfolio">
+						<a href="{{ url('portofolio')}}">
 							<span class="menu-item-title">Portfolio</span>
 
 						</a>
 					</li>
 					<li>
-						<a href="about">
+						<a href="{{ url('about')}}">
 							<span class="menu-item-title">About us</span>
 
 						</a>
 					</li>
 					<li>
-						<a href="contact">
+						<a href="{{ url('blog')}}">
+							<span class="menu-item-title">Blog</span>
+
+						</a>
+					</li>
+					<li>
+						<a href="{{ url('contact')}}">
 							<span class="menu-item-title">Contact</span>
 
 						</a>

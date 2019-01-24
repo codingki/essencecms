@@ -142,4 +142,15 @@ class PortofolioController extends Controller
         Session::flash('success', 'Portofolio has been deleted');
         return redirect('/admin/portofolio');
     }
+
+    public function post($slug){
+        $porto = Portofolio::where('slug', $slug)->first();
+        if ($porto) {
+            return view('public.portofolio.single', compact('porto'));
+        }else{
+            
+            abort(404);
+        }
+        
+    }
 }

@@ -54,8 +54,6 @@
 											<th>Client</th>
 											<th>Month</th>
 											<th>Category</th>
-											<th>Created at</th>
-											<th>Updated at</th>
 											<th>Actions</th>
 
 										</tr>
@@ -69,9 +67,10 @@
 											<td>{{ $porto->title }}</td>
 											<td>{{ $porto->month }}</td>
 											<td>{{ $porto->category }}</td>
-											<td>{{$porto->created_at->diffForHumans()}}</td>
-        									<td>{{$porto->updated_at->diffForHumans()}}</td>
-        									<td></td>
+        									<td>
+        										<a href="{{route('admin.portofolio.edit', $porto->id)}}" style="color:white;"><button  class="btn m-btn--pill btn-info "><i class="fa fa-edit"></i> Edit</button></a> 
+        										<a target="_blank" href="{{route('portofolio.single', $porto->slug)}}" style="color:white;"><button  class="btn m-btn--pill btn-success "><i class="fa fa-eye"></i> View</button></a>
+        									</td>
 											
 										</tr>
 										@endforeach

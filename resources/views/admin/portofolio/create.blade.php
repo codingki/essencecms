@@ -9,6 +9,13 @@
   text-align: center;
   cursor: pointer;
 }</style>
+<script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
+<script>
+  tinymce.init({
+    selector: '#body'
+  });
+  </script>
+
 @stop
 
 @section('sub-header')
@@ -42,8 +49,8 @@
     	<div class="slim"
 	         data-label="Drop logo here"
 	         data-max-file-size=1
-	         data-size="500,500"
-	         data-ratio="1:1">
+	         
+	         data-ratio="free">
 	        <input type="file" name="logo[]" required/>
 	    </div>
 	    <label>Thumbnail*</label>
@@ -73,7 +80,7 @@
 		
 		<div class="form-group">
 		    {!! Form::label('description', 'About the project*') !!}
-		    {!! Form::textarea('description', null, ['class'=>'form-control', 'rows' => 4, 'required' => 'required']) !!}
+		    {!! Form::textarea('description', null, ['class'=>'form-control', 'rows' => 4, 'id' => 'body']) !!}
 		</div>
 		<div class="row">
 

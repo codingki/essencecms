@@ -5,7 +5,7 @@
 							<div class="row">
 								<div class="site-branding">
 									<a class="normal_logo" href="./" rel="home">
-										<img src="images/elogo.png" alt="essence" />
+										<img src="{{url(images/elogo.png)}}" alt="essence" />
 									</a>
 								</div>
 								<nav class="main-navigation d-none d-lg-block">
@@ -49,7 +49,7 @@
 				<div class="page-mobile-menu-header">
 					<div class="page-mobile-menu-logo">
 						<a href="./">
-							<img src="images/elogo.png" alt=""/>
+							<img src="{{url('images/elogo.png')}}" alt=""/>
 						</a>
 					</div>
 					<div id="page-close-mobile-menu" class="page-close-mobile-menu">

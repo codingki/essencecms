@@ -1,5 +1,7 @@
 @extends('layouts.essence-nt')
-
+@section('header')
+<title>Services - Essence creative &#8211; | Creative Agency</title>
+@stop
 @section('content')
 
 <div class="section section-cover section-bg-54 pt-9 pb-6 mb-10">

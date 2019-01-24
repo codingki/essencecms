@@ -1,4 +1,7 @@
 @extends('layouts.essence-t')
+@section('header')
+<title>Essence creative &#8211; Everything has it's own essence | Creative Agency</title>
+@stop
 
 @section('content')
 <div class="section">

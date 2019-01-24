@@ -37,29 +37,16 @@
 									<div class="primary-menu">
 										<ul class="main-menu">
 											<li class="menu-item-has-children mega-menu">
-												<a href="{{ url('') }}">Home</a>
+												<a href="{{ url('blog') }}">Home</a>
 
 											</li>
+											@foreach($categories as $cat)
 											<li class="menu-item-has-children mega-menu">
-												<a href="{{ url('services')}}">Services</a>
+												<a href="{{ url('blog/category/'.$cat->slug)}}">{{$cat->name}}</a>
 
 											</li>
-											<li class="menu-item-has-children mega-menu">
-												<a href="{{ url('portofolio')}}">Portfolio</a>
-
-											</li>
-											<li class="menu-item-has-children mega-menu">
-												<a href="{{ url('about')}}">About us</a>
-
-											</li>
-											<li class="menu-item-has-children mega-menu">
-												<a href="{{ url('blog')}}">Blog</a>
-
-											</li>
-											<li class="menu-item-has-children mega-menu">
-												<a href="{{ url('contact')}}">Contact</a>
-
-											</li>
+											@endforeach
+											
 										</ul>
 									</div>
 								</nav>
@@ -87,41 +74,21 @@
 				</div>
 				<ul class="mobile-menu">
 					<li>
-						<a href="{{ url('') }}">
+						<a href="{{ url('blog') }}">
 							<span class="menu-item-title">Home</span>
 
 						</a>
 					</li>
+					@foreach($categories as $cat)
 					<li>
-						<a href="{{ url('services')}}">
-							<span class="menu-item-title">Services</span>
+						<a href="{{ url('blog/category/'.$cat->slug)}}">
+							<span class="menu-item-title">{{$cat->name}}</span>
 
 						</a>
 					</li>
-					<li>
-						<a href="{{ url('portofolio')}}">
-							<span class="menu-item-title">Portfolio</span>
-
-						</a>
-					</li>
-					<li>
-						<a href="{{ url('about')}}">
-							<span class="menu-item-title">About us</span>
-
-						</a>
-					</li>
-					<li>
-						<a href="{{ url('about')}}">
-							<span class="menu-item-title">Blog</span>
-
-						</a>
-					</li>
-					<li>
-						<a href="{{ url('contact')}}">
-							<span class="menu-item-title">Contact</span>
-
-						</a>
-					</li>
+					@endforeach
+					
+					
 
 				</ul>
 			</div>

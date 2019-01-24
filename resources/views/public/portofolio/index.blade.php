@@ -1,5 +1,7 @@
 @extends('layouts.essence-t')
-
+@section('header')
+<title>Portofolio - Essence creative | Creative Agency</title>
+@stop
 @section('content')
 <div class="section pt-10 pb-5">
 	<div class="container">
@@ -21,14 +23,17 @@
 				<div class="tm-grid-wrapper" data-type="masonry" data-xs-columns="1" data-sm-columns="2" data-lg-columns="3" data-gutter="15">
 					<div class="tm-grid has-animation">
 						<div class="grid-sizer"></div>
+						@if($portofolio)
+						@foreach($portofolio as $porto)
+
 	    					<div class="portfolio-item grid-item masonry-item">
 								<div class="media">
-									<img src="images/portofoliosonja.png" alt="" />
+									<img src="{{ url($porto->thumbnail_image->file) }}" alt="" />
 									<div class="overlay-wrapper">
 										<div class="overlay"></div>
 											<div class="popup">
 												<div class="popup-inner">
-													<a href="sonja">
+													<a href="portofolio/{{$porto->slug}}">
 														<i class="pe-7s-search"></i>
 													</a>
 												</div>
@@ -36,50 +41,15 @@
 									</div>
 								</div>
 								<div class="content">
-									<h3><a href="sonja">Sonja</a></h3>
-									<div class="cate"><a href="sonja">Social Media, Visual Content, Video Commercial</a></div>
+									<h3><a href="portofolio/{{$porto->slug}}">{{$porto->title}}</a></h3>
+									<div class="cate"><a href="portofolio/{{$porto->slug}}">{{$porto->category}}</a></div>
 								</div>
 							</div>
+						@endforeach
+						@endif
 
-						<div class="portfolio-item grid-item masonry-item">
-							<div class="media">
-								<img src="images/portofoliomeatngrill.png" alt="" />
-								<div class="overlay-wrapper">
-									<div class="overlay"></div>
-									<div class="popup">
-										<div class="popup-inner">
-											<a href="meatngrill">
-												<i class="pe-7s-search"></i>
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="content">
-								<h3><a href="meatngrill">Meat n grill malang</a></h3>
-								<div class="cate"><a href="meatngrill">Social Media, Visual Content</a></div>
-							</div>
-						</div>
 
-						<div class="portfolio-item grid-item masonry-item">
-							<div class="media">
-								<img src="images/portofoliokeyfit.png" alt="" />
-								<div class="overlay-wrapper">
-									<div class="overlay"></div>
-									<div class="popup">
-										<div class="popup-inner">
-											<a href="keyfit">
-												<i class="pe-7s-search"></i>
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="content">
-								<h3><a href="keyfit">Keyfit</a></h3>
-								<div class="cate"><a href="keyfit">Social Media, Visual Content</a></div>
-							</div>
-						</div>
+						
 
 					</div>
 				</div>

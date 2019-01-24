@@ -3,8 +3,9 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-		<link rel="shortcut icon" href="images/favicon.png"/>
-		<title>Essence creative &#8211; Everything has it's own essence | Creative Agemcy</title>
+		<link rel="shortcut icon" href="{{url('images/favicon.png')}}"/>
+		@yield('header')
+		
 		@include('includes.styles')	
 		
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

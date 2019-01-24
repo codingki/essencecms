@@ -1,5 +1,7 @@
 <?php
-
+use App\Portofolio;
+use App\Post;
+use App\Categories;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,12 +19,44 @@ Route::get('/', function () {
 Route::get('about', function () {
     return view('public.about');
 });
-Route::get('portofolio', function () {
-    return view('public.portofolio');
-});
+
 Route::get('services', function () {
     return view('public.services');
 });
+
+
+Route::get('contact', function () {
+    return view('public.contact');
+});
+
+
+
+Route::get('portofolio', function () {
+	$portofolio = Portofolio::all();
+    return view('public.portofolio.index', compact('portofolio'));
+});
+Route::get('portofolio/{slug}', 
+	['as' => 'portofolio.single', 'uses' => 'PortofolioController@post']
+);
+
+Route::get('blog', function () {
+	$blogs = Post::paginate(6);
+	$categories = Categories::all();
+	$recent = Post::all()->sortByDesc("created_at")->take(10);
+    return view('public.blog.index', compact('blogs', 'categories', 'recent'));
+});
+
+Route::get('blog/{slug}', 
+	['as' => 'blog.single', 'uses' => 'PostsController@single']
+);
+
+Route::get('blog/category/{slug}', 
+	['as' => 'blog.category', 'uses' => 'PostsController@cat']
+);
+
+Route::get('blog/tags/{tag}', 
+	['as' => 'blog.tags', 'uses' => 'PostsController@tag']
+);
 
 
 Route::group(['middleware' => 'auth'], function(){
@@ -59,4 +93,4 @@ Route::group(['middleware' => 'auth'], function(){
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('home', 'HomeController@index')->name('home');
