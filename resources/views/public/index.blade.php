@@ -226,6 +226,52 @@
 							</div>
 						</div>
 					</div>
+					<div class="container mt-8">
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="">
+									<h1 class="section-title-bold-dark mb-8 ">Latest Updates</h1>
+
+								</div>
+							</div>
+						</div>
+						<div class="row">
+
+							@foreach($blogs as $blog)
+							<div class="col-lg-4">
+								<div class="blog-item style-1">
+									<div class="blog-item-wrapper">
+										<div class="media-wrapper">
+											<div class="media">
+												<a href="{{route('blog.single', $blog->slug)}}">
+													<img src="{{url($blog->photo->file)}}" alt="">
+												</a>
+											</div>
+											
+										</div>
+										<div class="content">
+											<div class="cate">
+												{{ date('F d, Y', strtotime($blog->created_at)) }} / <a href="{{route('blog.category', $blog->category->slug)}}">{{ $blog->category->name}}</a>
+											</div>
+											<h3><a href="{{route('blog.single', $blog->slug)}}">{{$blog->title}}</a></h3>
+											{!! str_limit($blog->body, 30) !!}
+										</div>
+									</div>
+								</div>
+							</div>
+							@endforeach
+
+							
+							
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="mt-4 text-center">
+								<a href="blog" class="btn btn-rounded btn-bg-dark"><span>VIEW ALL</span></a>
+							</div>
+						</div>
+					</div>
 				</div>
 
 				<div class="section section-bg-6 section-cover pt-10 pb-10">

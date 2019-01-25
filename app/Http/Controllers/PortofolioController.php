@@ -143,15 +143,5 @@ class PortofolioController extends Controller
         return redirect('/admin/portofolio');
     }
 
-    public function post($slug){
-        $porto = Portofolio::where('slug', $slug)->first();
-        views($porto)->record();
-        if ($porto) {
-            return view('public.portofolio.single', compact('porto'));
-        }else{
-            
-            abort(404);
-        }
-        
-    }
+    
 }

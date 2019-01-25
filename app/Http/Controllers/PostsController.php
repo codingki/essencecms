@@ -118,52 +118,6 @@ class PostsController extends Controller
         return redirect('/admin/posts');
     }
 
-    public function single($slug){
-        $categories = Categories::all();
-        $recent = Post::all()->sortByDesc("created_at")->take(10);
-        $blog = Post::where('slug', $slug)->first();
-        $cat = Categories::where('id', $blog->category_id)->first();
-        views($blog)->record();
-        views($cat)->record();
-        if ($blog) {
-            return view('public.blog.single', compact('blog', 'categories', 'recent'));
-        }else{
-            
-            abort(404);
-        }
-        
-    }
-    public function cat($slug){
-        $cat = Categories::where('slug', $slug)->first();
-        $categories = Categories::all();
-        $recent = Post::all()->sortByDesc("created_at")->take(10);
-        
-        if ($cat) {
-            $a = Post::where('category_id', $cat->id);
-            $blogs = Post::where('category_id', $cat->id)->orderBy('created_at', 'desc')->paginate(6);
-            return view('public.blog.category', compact('blogs', 'cat', 'categories', 'recent'));
-        }else{
-            
-            abort(404);
-        }
-        
-    }
-
-    public function tag($tag){
-        $tags = $tag;
-        $tag = Post::where('slug', 'like', '%'.$tag.'%');
-        $categories = Categories::all();
-        $recent = Post::all()->sortByDesc("created_at")->take(10);
-        
-        if ($tag) {
-            
-            $blogs = $tag->orderBy('created_at', 'desc')->paginate(6);
-            return view('public.blog.tags', compact('blogs', 'tags', 'categories', 'recent'));
-        }else{
-            
-            abort(404);
-        }
-        
-    }
+    
 
 }
