@@ -24,7 +24,7 @@
 <div class="row">
 
 
-<div class="col-sm-6">
+<div class="col-sm-6 m-portlet">
 	@if($categories)
 	<table class="table table-striped- table-bordered table-hover table-checkable">
 		<thead>
@@ -55,7 +55,7 @@
 	@endif
 </div>
 
-<div class="col-sm-6 box-form">
+<div class="col-sm-6 m-portlet">
 	
 	{!! Form::open(['method'=> 'POST', 'action' => 'CategoryController@store']) !!}
 	

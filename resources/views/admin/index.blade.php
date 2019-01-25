@@ -31,10 +31,39 @@
 @stop
 
 @section('content')
-<div class="row">
-	<div class="col-md-12">
-		<canvas id="myChart" width="400" height="400"></canvas>
+<div class="row ">
+	
+	<div class="col-md-12 m-portlet">
+		<div class="m-portlet__head">
+			<div class="m-portlet__head-caption">
+				<div class="m-portlet__head-title">
+					
+					<h3 class="m-portlet__head-text">
+						Pageviews this week
+					</h3>
+				</div>
+			</div>
+		</div>
+		<div class="m-portlet__body">
+			<canvas id="week" height="50"></canvas>
+		</div>
 	</div>
+	<div class="col-md-12 m-portlet">
+		<div class="m-portlet__head">
+			<div class="m-portlet__head-caption">
+				<div class="m-portlet__head-title">
+					
+					<h3 class="m-portlet__head-text">
+						Pageviews this month
+					</h3>
+				</div>
+			</div>
+		</div>
+		<div class="m-portlet__body">
+			<canvas id="month" height="50"></canvas>
+		</div>
+	</div>
+	
 </div>
 
 @stop
@@ -42,31 +71,62 @@
 @section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js" type="text/javascript"></script>
 <script>
-var ctx = document.getElementById("myChart").getContext('2d');
+{!!json_encode($analyticsData)!!}
+var ctx = document.getElementById("week").getContext('2d');
 var myChart = new Chart(ctx, {
-    type: 'bar',
+    type: 'line',
     data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        labels: [
+
+            		@foreach($analyticsData as $b)
+            			"{{date('D', strtotime($b['date']->date))}}",
+					@endforeach
+					],
         datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(99, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
+            label: 'Pageviews this week',
+            data: [
+            		@foreach($analyticsData as $a)
+						{{$a['pageViews'].',' }}
+					@endforeach
+					]
+					,
+           
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+
+
+</script>
+<script type="text/javascript">
+{!!json_encode($month)!!}
+var ctx = document.getElementById("month").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: [
+
+            		@foreach($month as $b)
+            			"{{date('d M', strtotime($b['date']->date))}}",
+					@endforeach
+					],
+        datasets: [{
+            label: 'Pageviews this Month',
+            data: [
+            		@foreach($month as $a)
+						{{$a['pageViews'].',' }}
+					@endforeach
+					]
+					,
+           
         }]
     },
     options: {

@@ -3,6 +3,7 @@ use App\Portofolio;
 use App\Post;
 use App\Categories;
 use App\Testimonial;
+use Spatie\Analytics\Period;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -66,7 +67,9 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::resource('admin/profile', 'ProfileController');
 		Route::group(['middleware'=> 'active'], function(){
 			Route::get('admin', function () {
-		    return view('admin.index');
+				$analyticsData = Analytics::fetchTotalVisitorsAndPageViews(Period::days(6));
+				$month = Analytics::fetchTotalVisitorsAndPageViews(Period::months(1));
+		    	return view('admin.index', compact('analyticsData','month'));
 			});
 			Route::get('admin/categories/edit/{id}', ['as' => 'admin.categories.edit', 'uses' => 'CategoryController@edit']);
 			Route::get('admin/posts/edit/{id}', ['as' => 'admin.posts.edit', 'uses' => 'PostsController@edit']);

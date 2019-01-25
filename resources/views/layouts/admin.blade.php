@@ -145,7 +145,7 @@ License: You must have a valid license purchased only from themeforest(the above
 						</div>
 					</div>
 					@endif
-					<div class="m-grid__item m-grid__item--fluid m-grid m-grid--desktop m-grid--ver-desktop m-body__content bg-white">
+					<div class="m-grid__item m-grid__item--fluid m-grid m-grid--desktop m-grid--ver-desktop m-body__content">
 
 						
 						<div class="m-grid__item m-grid__item--fluid m-wrapper">

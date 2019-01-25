@@ -3,13 +3,13 @@
 <link href="{{ asset('css/slim.min.css') }}" rel="stylesheet" type="text/css" />
 @stop
 @section('content')
-<div class="m-grid__item m-grid__item--fluid m-wrapper">
+
 
 							
-							<div class="m-content">
-								<div class="row">
-									<div class="col-lg-4">
-										<div class="m-portlet m-portlet--full-height   m-portlet--rounded">
+							
+								<div class="row ">
+									<div class="col-lg-4 m-portlet m-portlet--full-height   m-portlet--rounded">
+										<div class="">
 											<div class="m-portlet__body">
 												<div class="m-card-profile">
 													<div class="m-card-profile__title m--hide">
@@ -44,8 +44,8 @@
 											</div>
 										</div>
 									</div>
-									<div class="col-lg-8">
-										<div class="m-portlet m-portlet--full-height m-portlet--tabs   m-portlet--rounded">
+									<div class="col-lg-8 m-portlet m-portlet--full-height m-portlet--tabs   m-portlet--rounded">
+										<div class="">
 											<div class="m-portlet__head">
 												<div class="m-portlet__head-tools">
 													<ul class="nav nav-tabs m-tabs m-tabs-line   m-tabs-line--left m-tabs-line--primary" role="tablist">
@@ -187,8 +187,8 @@
 										</div>
 									</div>
 								</div>
-							</div>
-						</div>
+							
+						
 @stop
 
 @section('scripts')

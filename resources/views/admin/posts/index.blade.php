@@ -80,7 +80,9 @@
 											<td>{{$post->title}}</td>
 											<td>{{$post->created_at->diffForHumans()}}</td>
         									<td>{{$post->updated_at->diffForHumans()}}</td>
-											<td><a href="{{route('admin.posts.edit', $post->id)}}" style="color:white;"><button  class="btn m-btn--pill btn-info "><i class="fa fa-edit"></i>Edit</button></a></td>
+											<td><a href="{{route('admin.posts.edit', $post->id)}}" style="color:white;"><button  class="btn m-btn--pill btn-info "><i class="fa fa-edit"></i>Edit</button></a>
+												<a href="{{route('blog.single', $post->slug)}}" style="color:white;"><button  class="btn m-btn--pill btn-success "><i class="fa fa-eye"></i>View</button></a>
+											</td>
 											
 										</tr>
 										@endforeach

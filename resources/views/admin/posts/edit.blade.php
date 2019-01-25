@@ -62,7 +62,7 @@
 
 @section('content')
 {!! Form::model($post, ['method'=> 'PATCH', 'action' => ['PostsController@update', $post->id], 'files'=>true]) !!}
-<div class="row">
+<div class="row m-portlet" style="padding-top: 20px; padding-bottom:20px">
 	<div class="col-md-6">
 		<div class="form-group">
 		    {!! Form::label('title', 'Title*') !!}

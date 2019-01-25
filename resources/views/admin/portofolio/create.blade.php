@@ -42,7 +42,7 @@
 @section('content')
 
 {!! Form::open(['method'=> 'POST', 'action' => 'PortofolioController@store', 'files'=>true]) !!}
-<div class="row">
+<div class="row m-portlet" style="padding-top: 20px; padding-bottom:20px">
 	
 	<div class="col-md-3">
 		<label>Logo/Client Photo*</label>
