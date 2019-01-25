@@ -163,15 +163,15 @@
 								<div class="tm-grid-wrapper" data-type="masonry" data-xs-columns="1" data-sm-columns="2" data-lg-columns="3" data-gutter="30">
 									<div class="tm-grid has-animation">
 										<div class="grid-sizer"></div>
-
+										@foreach($portofolio as $porto)
 										<div class="portfolio-item grid-item masonry-item">
 											<div class="media">
-												<img src="images/portofoliosonja.png" alt="" />
+												<img src="{{url($porto->thumbnail_image->file)}}" alt="" />
 												<div class="overlay-wrapper">
 													<div class="overlay"></div>
 													<div class="popup">
 														<div class="popup-inner">
-															<a href="sonja">
+															<a href="portofolio/{{$porto->slug}}">
 																<i class="pe-7s-search"></i>
 															</a>
 														</div>
@@ -179,55 +179,18 @@
 												</div>
 											</div>
 											<div class="content">
-												<h3><a href="keyfit">Sonja</a></h3>
-												<div class="cate"><a href="sonja">Social Media, Visual Content, Video Commercial</a></div>
+												<h3><a href="portofolio/{{$porto->slug}}">{{$porto->title}}</a></h3>
+												<div class="cate"><a href="portofolio/{{$porto->slug}}">{{$porto->category}}</a></div>
 											</div>
 										</div>
+										@endforeach
 
-										<div class="portfolio-item grid-item masonry-item">
-											<div class="media">
-												<img src="images/portofoliomeatngrill.png" alt="" />
-												<div class="overlay-wrapper">
-													<div class="overlay"></div>
-													<div class="popup">
-														<div class="popup-inner">
-															<a href="meatngrill">
-																<i class="pe-7s-search"></i>
-															</a>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="content">
-												<h3><a href="keyfit">Meat n grill malang</a></h3>
-												<div class="cate"><a href="meatngrill">Social Media, Visual Content</a></div>
-											</div>
-										</div>
-
-										<div class="portfolio-item grid-item masonry-item">
-											<div class="media">
-												<img src="images/portofoliokeyfit.png" alt="" />
-												<div class="overlay-wrapper">
-													<div class="overlay"></div>
-													<div class="popup">
-														<div class="popup-inner">
-															<a href="keyfit">
-																<i class="pe-7s-search"></i>
-															</a>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="content">
-												<h3><a href="keyfit">Keyfit</a></h3>
-												<div class="cate"><a href="keyfit">Social Media, Visual Content</a></div>
-											</div>
-										</div>
+										
 
 									</div>
 								</div>
 								<div class="mt-4 text-center">
-									<a href="#" class="btn btn-rounded btn-bg-dark"><span>VIEW ALL WORKS</span></a>
+									<a href="portofolio" class="btn btn-rounded btn-bg-dark"><span>VIEW ALL WORKS</span></a>
 								</div>
 							</div>
 						</div>
@@ -246,36 +209,19 @@
 							</div>
 							<div class="col-sm-12 col-lg-6 col-md-6 offset-xs-1 col-xs-10">
 								<div class="testimonial-carousel dots-carousel">
+									@foreach($testimonial as $testi)
 									<div class="item">
 										<div class="quote bg-dark">
-											You guys are legendary! You guys are great and having amazing support &amp; service. I couldn’t ask for any better. Thank you!
+											{{$testi->body}}
 										</div>
-										<img style="width:80px;" src="images/portofoliomeatngrill.png" alt="" />
+										<img style="width:80px;" src="{{url($testi->photo->file)}}" alt="" />
 										<div class="author">
-											<span class="dark">Selena Johansson</span>
-											<span class="dark">Meat and grill malang.</span>
+											<span class="dark">{{$testi->name}}</span>
+											<span class="dark">{{$testi->client}}</span>
 										</div>
 									</div>
-									<div class="item">
-										<div class="quote bg-dark">
-											A well designed, easy to use one with a good support. I highly recommend you consider Essence if you are going to make your website professional looking.
-										</div>
-										<img style="width:80px;" src="images/portofoliosonja.png" alt="" />
-										<div class="author">
-											<span class="dark">Lily P.</span>
-											<span class="dark">Sonja.</span>
-										</div>
-									</div>
-									<div class="item">
-										<div class="quote bg-dark">
-											Great theme with a lots of customization possible. Customer service is fast, nice, and very competent. Thank you for this great product.
-										</div>
-										<img style="width:80px;" src="images/portofoliokeyfit.png" alt="" />
-										<div class="author">
-											<span class="dark">Paolo</span>
-											<span class="dark">keyfit.</span>
-										</div>
-									</div>
+									@endforeach
+									
 								</div>
 							</div>
 						</div>

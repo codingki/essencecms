@@ -2,6 +2,7 @@
 use App\Portofolio;
 use App\Post;
 use App\Categories;
+use App\Testimonial;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +15,10 @@ use App\Categories;
 */
 
 Route::get('/', function () {
-    return view('public.index');
+	$portofolio = Portofolio::all()->sortByDesc("created_at")->take(3);
+	$testimonial = Testimonial::all()->sortByDesc("created_at")->take(3);
+	$blogs = Post::all()->sortByDesc("created_at")->take(3);
+    return view('public.index', compact('portofolio', 'testimonial', 'blogs'));
 });
 Route::get('about', function () {
     return view('public.about');
