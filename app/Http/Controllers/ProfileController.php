@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Photo;
+use App\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Slim;
@@ -19,9 +20,10 @@ class ProfileController extends Controller
     public function index()
     {
         $user =  Auth::user();
-       
+        $posts = Post::where('user_id', $user->id)->count();
+        
         $profile = User::findOrFail($user->id);
-        return view('admin.profile.edit', compact('profile'));
+        return view('admin.profile.edit', compact('profile','posts'));
     }
 
     /**

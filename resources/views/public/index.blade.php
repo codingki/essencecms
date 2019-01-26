@@ -171,7 +171,7 @@
 													<div class="overlay"></div>
 													<div class="popup">
 														<div class="popup-inner">
-															<a href="portofolio/{{$porto->slug}}">
+															<a href="{{route('portofolio.single', $porto->slug)}}">
 																<i class="pe-7s-search"></i>
 															</a>
 														</div>
@@ -179,8 +179,8 @@
 												</div>
 											</div>
 											<div class="content">
-												<h3><a href="portofolio/{{$porto->slug}}">{{$porto->title}}</a></h3>
-												<div class="cate"><a href="portofolio/{{$porto->slug}}">{{$porto->category}}</a></div>
+												<h3><a href="{{route('portofolio.single', $porto->slug)}}">{{$porto->title}}</a></h3>
+												<div class="cate"><a href="{{route('portofolio.single', $porto->slug)}}">{{$porto->category}}</a></div>
 											</div>
 										</div>
 										@endforeach
@@ -190,7 +190,7 @@
 									</div>
 								</div>
 								<div class="mt-4 text-center">
-									<a href="portofolio" class="btn btn-rounded btn-bg-dark"><span>VIEW ALL WORKS</span></a>
+									<a href="{{route('portofolio')}}" class="btn btn-rounded btn-bg-dark"><span>VIEW ALL WORKS</span></a>
 								</div>
 							</div>
 						</div>
@@ -254,7 +254,7 @@
 												{{ date('F d, Y', strtotime($blog->created_at)) }} / <a href="{{route('blog.category', $blog->category->slug)}}">{{ $blog->category->name}}</a>
 											</div>
 											<h3><a href="{{route('blog.single', $blog->slug)}}">{{$blog->title}}</a></h3>
-											{!! str_limit($blog->body, 30) !!}
+											{!! str_limit($blog->body, 10) !!}
 										</div>
 									</div>
 								</div>
@@ -268,7 +268,7 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="mt-4 text-center">
-								<a href="blog" class="btn btn-rounded btn-bg-dark"><span>VIEW ALL</span></a>
+								<a href="{{route('blog')}}" class="btn btn-rounded btn-bg-dark"><span>VIEW ALL</span></a>
 							</div>
 						</div>
 					</div>

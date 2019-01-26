@@ -39,7 +39,7 @@
 				<div class="m-portlet__head-title">
 					
 					<h3 class="m-portlet__head-text">
-						Pageviews this week
+						Pageviews this week 
 					</h3>
 				</div>
 			</div>
@@ -61,6 +61,79 @@
 		</div>
 		<div class="m-portlet__body">
 			<canvas id="month" height="50"></canvas>
+		</div>
+	</div>
+	<div class="col-md-6 m-portlet">
+		<div class="m-portlet__head">
+			<div class="m-portlet__head-caption">
+				<div class="m-portlet__head-title">
+					
+					<h3 class="m-portlet__head-text">
+						Top 5 Post views
+					</h3>
+				</div>
+			</div>
+		</div>
+		<div class="m-portlet__body">
+			<table class="table table-striped- table-bordered table-hover table-checkable">
+				<thead>
+					<tr>
+						<th>Title</th>
+						<th>Author</th>
+						<th>Views</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach($post as $a)
+					<tr>
+						<td>{{$a->id}}</td>
+						<td>{{$a->user->name}}</a></td>
+						<td>{{$a->views_count}}</td>
+						<td>
+							<a href="{{route('blog.single', $a->slug)}}" target="_blank" style="color:white;"><button  class="btn m-btn--pill btn-success "><i class="fa fa-eye"></i>View</button></a>
+						</td>
+					</tr>
+					@endforeach
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="col-md-6 m-portlet">
+		<div class="m-portlet__head">
+			<div class="m-portlet__head-caption">
+				<div class="m-portlet__head-title">
+					
+					<h3 class="m-portlet__head-text">
+						Top 5 Portofolio views
+					</h3>
+				</div>
+			</div>
+		</div>
+		<div class="m-portlet__body">
+			<table class="table table-striped- table-bordered table-hover table-checkable">
+				<thead>
+					<tr>
+						<th>Logo</th>
+						<th>Client</th>
+						<th>Views</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach($porto as $b)
+					<tr>
+						<td>{{$b->id}}</td>
+						<td><img height="50" src="{{ url($b->photo->file) }}"></a></td>
+						<td>{{$b->views_count}}</td>
+						<td>
+							<a href="{{route('blog.single', $b->slug)}}" target="_blank" style="color:white;"><button  class="btn m-btn--pill btn-success "><i class="fa fa-eye"></i>View</button></a>
+						</td>
+					</tr>
+					@endforeach
+				</tbody>
+			</table>
 		</div>
 	</div>
 	

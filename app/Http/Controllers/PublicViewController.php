@@ -55,18 +55,19 @@ class PublicViewController extends Controller
     	$blogs = Post::paginate(6);
 		$categories = Categories::all();
 		$recent = Post::all()->sortByDesc("created_at")->take(10);
-	    return view('public.blog.index', compact('blogs', 'categories', 'recent'));
+        $top = Post::orderByViews('desc')->get()->take(5);
+	    return view('public.blog.index', compact('blogs', 'categories', 'recent', 'top'));
     }
 
     public function blog_category($slug){
     	$cat = Categories::where('slug', $slug)->first();
         $categories = Categories::all();
         $recent = Post::all()->sortByDesc("created_at")->take(10);
-        
+        $top = Post::orderByViews('desc')->get()->take(5);
         if ($cat) {
             $a = Post::where('category_id', $cat->id);
             $blogs = Post::where('category_id', $cat->id)->orderBy('created_at', 'desc')->paginate(6);
-            return view('public.blog.category', compact('blogs', 'cat', 'categories', 'recent'));
+            return view('public.blog.category', compact('blogs', 'cat', 'categories', 'recent', 'top'));
         }else{
             
             abort(404);
@@ -78,10 +79,11 @@ class PublicViewController extends Controller
         $recent = Post::all()->sortByDesc("created_at")->take(10);
         $blog = Post::where('slug', $slug)->first();
         $cat = Categories::where('id', $blog->category_id)->first();
+        $top = Post::orderByViews('desc')->get()->take(5);
         views($blog)->record();
         views($cat)->record();
         if ($blog) {
-            return view('public.blog.single', compact('blog', 'categories', 'recent'));
+            return view('public.blog.single', compact('blog', 'categories', 'recent', 'top'));
         }else{
             
             abort(404);
@@ -93,11 +95,11 @@ class PublicViewController extends Controller
         $tag = Post::where('slug', 'like', '%'.$tag.'%');
         $categories = Categories::all();
         $recent = Post::all()->sortByDesc("created_at")->take(10);
-        
+        $top = Post::orderByViews('desc')->get()->take(5);
         if ($tag) {
             
             $blogs = $tag->orderBy('created_at', 'desc')->paginate(6);
-            return view('public.blog.tags', compact('blogs', 'tags', 'categories', 'recent'));
+            return view('public.blog.tags', compact('blogs', 'tags', 'categories', 'recent', 'top'));
         }else{
             
             abort(404);

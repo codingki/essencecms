@@ -48,14 +48,25 @@
 				<div class="author-info">
 					<div class="row">
 						<div class="col-sm-3">
-							<img alt="" src="{{ url($blog->user->photo->file) }}" />
+							<img alt="" src="{{ $blog->user->photo ? url($blog->user->photo->file) : 'mantap' }}" />
 						</div>
 						<div class="col-sm-9">
-							<h3>{{ $blog->user->name }}</h3>
-							<p>{{ $blog->user->bio }}</p>
-							<span><a target="_blank" href="#"><i style="color:white;" class="fa fa-facebook"></i></a></span>
-							<span><a target="_blank" href="#"><i style="color:white;" class="fa fa-twitter"></i></a></span>
-							<span><a target="_blank" href="#"><i style="color:white;" class="fa fa-google-plus"></i></a></span>
+							<h3 class="mt-2">{{ $blog->user->name }}</h3>
+							<p class="mt-2">{{ $blog->user->bio }}</p>
+							<div class="mt-2">
+								@if($blog->user->facebook)
+									<span><a target="_blank" href="{{$blog->facebook}}"><i style="color:white;" class="fa fa-facebook"></i></a></span>
+								@endif
+								@if($blog->user->instagram)
+									<span><a target="_blank" href="{{$blog->instagram}}"><i style="color:white;" class="fa fa-instagram"></i></a></span>
+								@endif
+								@if($blog->user->twitter)
+									<span><a target="_blank" href="{{$blog->twitter}}"><i style="color:white;" class="fa fa-twitter"></i></a></span>
+								@endif
+								@if($blog->user->linkedin)
+									<span><a target="_blank" href="{{$blog->linkedin}}"><i style="color:white;" class="fa fa-linkedin"></i></a></span>
+								@endif
+							</div>
 						</div>
 					</div>
 				</div>

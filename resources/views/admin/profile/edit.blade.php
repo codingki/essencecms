@@ -35,7 +35,7 @@
 																<span class="m-widget1__desc">Total Posts</span>
 															</div>
 															<div class="col m--align-right">
-																<span class="m-widget1__number m--font-brand">200</span>
+																<span class="m-widget1__number m--font-brand">{{$posts}}</span>
 															</div>
 														</div>
 													</div>

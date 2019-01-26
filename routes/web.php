@@ -67,9 +67,11 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::resource('admin/profile', 'ProfileController');
 		Route::group(['middleware'=> 'active'], function(){
 			Route::get('admin', function () {
+				$post = Post::orderByViews('desc')->get()->take(5);
+				$porto = Portofolio::orderByViews('desc')->get()->take(5);
 				$analyticsData = Analytics::fetchTotalVisitorsAndPageViews(Period::days(6));
 				$month = Analytics::fetchTotalVisitorsAndPageViews(Period::months(1));
-		    	return view('admin.index', compact('analyticsData','month'));
+		    	return view('admin.index', compact('analyticsData','month','post', 'porto'));
 			});
 			Route::get('admin/categories/edit/{id}', ['as' => 'admin.categories.edit', 'uses' => 'CategoryController@edit']);
 			Route::get('admin/posts/edit/{id}', ['as' => 'admin.posts.edit', 'uses' => 'PostsController@edit']);

@@ -33,7 +33,7 @@
 										<div class="overlay"></div>
 											<div class="popup">
 												<div class="popup-inner">
-													<a href="portofolio/{{$porto->slug}}">
+													<a href="{{route('portofolio.single', $porto->slug)}}">
 														<i class="pe-7s-search"></i>
 													</a>
 												</div>
@@ -41,8 +41,8 @@
 									</div>
 								</div>
 								<div class="content">
-									<h3><a href="portofolio/{{$porto->slug}}">{{$porto->title}}</a></h3>
-									<div class="cate"><a href="portofolio/{{$porto->slug}}">{{$porto->category}}</a></div>
+									<h3><a href="{{route('portofolio.single', $porto->slug)}}">{{$porto->title}}</a></h3>
+									<div class="cate"><a href="{{route('portofolio.single', $porto->slug)}}">{{$porto->category}}</a></div>
 								</div>
 							</div>
 						@endforeach
@@ -68,8 +68,8 @@
 							<div class="mb-3 d-block d-md-block d-lg-none"></div>
 						</div>
 						<div class="col-sm-4">
-							<a href="services" class="btn btn-rounded btn-dark mb-2"><span>VIEW OUR SERVICES</span></a>&nbsp;&nbsp;
-							<a href="contact" class="btn btn-rounded btn-bg-dark mb-2"><span>CONTACT US</span></a>
+							<a href="{{route('services')}}" class="btn btn-rounded btn-dark mb-2"><span>VIEW OUR SERVICES</span></a>&nbsp;&nbsp;
+							<a href="{{route('contact')}}" class="btn btn-rounded btn-bg-dark mb-2"><span>CONTACT US</span></a>
 						</div>
 					</div>
 				</div>

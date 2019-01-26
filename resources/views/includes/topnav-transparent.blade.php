@@ -4,7 +4,7 @@
 						<div class="col-10 col-md-10 col-lg-10 col-xl-10 pl-0">
 							<div class="row">
 								<div class="site-branding">
-									<a class="normal_logo" href="{{ url('') }}" rel="home">
+									<a class="normal_logo" href="{{ route('home') }}" rel="home">
 										<img src="{{ url('images/elogo.png') }}" alt="essence" />
 									</a>
 								</div>
@@ -12,27 +12,27 @@
 									<div class="primary-menu">
 										<ul class="main-menu">
 											<li class="menu-item-has-children mega-menu">
-												<a href="{{ url('') }}">Home</a>
+												<a href="{{ route('home') }}">Home</a>
 
 											</li>
 											<li class="menu-item-has-children mega-menu">
-												<a href="{{ url('services')}}">Services</a>
+												<a href="{{ route('services')}}">Services</a>
 
 											</li>
 											<li class="menu-item-has-children mega-menu">
-												<a href="{{ url('portofolio')}}">Portfolio</a>
+												<a href="{{ route('portofolio')}}">Portfolio</a>
 
 											</li>
 											<li class="menu-item-has-children mega-menu">
-												<a href="{{ url('about')}}">About us</a>
+												<a href="{{ route('about')}}">About us</a>
 
 											</li>
 											<li class="menu-item-has-children mega-menu">
-												<a href="{{ url('blog')}}">Blog</a>
+												<a href="{{ route('blog')}}">Blog</a>
 
 											</li>
 											<li class="menu-item-has-children mega-menu">
-												<a href="{{ url('contact')}}">Contact</a>
+												<a href="{{ route('contact')}}">Contact</a>
 
 											</li>
 										</ul>
@@ -52,7 +52,7 @@
 			<div id="page-mobile-main-menu" class="page-mobile-main-menu">
 				<div class="page-mobile-menu-header">
 					<div class="page-mobile-menu-logo">
-						<a href="{{ url('') }}">
+						<a href="{{ route('home') }}">
 							<img src="{{ url('images/elogo.png') }}" alt=""/>
 						</a>
 					</div>
@@ -62,37 +62,37 @@
 				</div>
 				<ul class="mobile-menu">
 					<li>
-						<a href="{{ url('')}}">
+						<a href="{{ route('home')}}">
 							<span class="menu-item-title">Home</span>
 
 						</a>
 					</li>
 					<li>
-						<a href="{{ url('services')}}">
+						<a href="{{ route('services')}}">
 							<span class="menu-item-title">Services</span>
 
 						</a>
 					</li>
 					<li>
-						<a href="{{ url('portofolio')}}">
+						<a href="{{ route('portofolio')}}">
 							<span class="menu-item-title">Portfolio</span>
 
 						</a>
 					</li>
 					<li>
-						<a href="{{ url('about')}}">
+						<a href="{{ route('about')}}">
 							<span class="menu-item-title">About us</span>
 
 						</a>
 					</li>
 					<li>
-						<a href="{{ url('blog')}}">
+						<a href="{{ route('blog')}}">
 							<span class="menu-item-title">Blog</span>
 
 						</a>
 					</li>
 					<li>
-						<a href="{{ url('contact')}}">
+						<a href="{{ route('contact')}}">
 							<span class="menu-item-title">Contact</span>
 
 						</a>

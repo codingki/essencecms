@@ -96,8 +96,8 @@
 							<div class="mb-3 d-block d-md-block d-lg-none"></div>
 						</div>
 						<div class="col-sm-4">
-							<a href="services" class="btn btn-rounded btn-dark mb-2"><span>VIEW OUR SERVICES</span></a>&nbsp;&nbsp;
-							<a href="contact" class="btn btn-rounded btn-bg-dark mb-2"><span>CONTACT US</span></a>
+							<a href="{{route('services')}}" class="btn btn-rounded btn-dark mb-2"><span>VIEW OUR SERVICES</span></a>&nbsp;&nbsp;
+							<a href="{{route('contact')}}" class="btn btn-rounded btn-bg-dark mb-2"><span>CONTACT US</span></a>
 						</div>
 					</div>
 				</div>
